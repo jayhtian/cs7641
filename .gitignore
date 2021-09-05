@@ -1,0 +1,3 @@
+*.arff
+__pycache__
+.env
