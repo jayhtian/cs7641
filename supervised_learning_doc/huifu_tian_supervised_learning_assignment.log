@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.8.30)  2 SEP 2021 21:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.8.30)  8 SEP 2021 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -47,35 +47,111 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count87
+\Gm@cntv=\count88
+\c@Gm@tempcnt=\count89
+\Gm@bindingoffset=\dimen105
+\Gm@wd@mp=\dimen106
+\Gm@odd@mp=\dimen107
+\Gm@even@mp=\dimen108
+\Gm@layoutwidth=\dimen109
+\Gm@layoutheight=\dimen110
+\Gm@layouthoffset=\dimen111
+\Gm@layoutvoffset=\dimen112
+\Gm@dimlist=\toks15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (./soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks16
+\SOUL@lasttoken=\toks17
+\SOUL@cmds=\toks18
+\SOUL@buffer=\toks19
+\SOUL@token=\toks20
+\SOUL@spaceskip=\skip43
+\SOUL@ttwidth=\dimen113
+\SOUL@uldp=\dimen114
+\SOUL@ulht=\dimen115
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen116
+\captionmargin@=\dimen117
+\captionwidth=\dimen118
+\caption@tempdima=\dimen119
+\caption@indent=\dimen120
+\caption@parindent=\dimen121
+\caption@hangindent=\dimen122
+)
+\c@ContinuedFloat=\count90
+)
+\c@subfigure=\count91
+\c@subtable=\count92
+)
 (./huifu_tian_supervised_learning_assignment.aux)
 \openout1 = `huifu_tian_supervised_learning_assignment.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count87
-\scratchdimen=\dimen105
+\scratchcounter=\count93
+\scratchdimen=\dimen123
 \scratchbox=\box26
-\nofMPsegments=\count88
-\nofMParguments=\count89
-\everyMPshowfont=\toks15
-\MPscratchCnt=\count90
-\MPscratchDim=\dimen106
-\MPnumerator=\count91
-\makeMPintoPDFobject=\count92
-\everyMPtoPDFconversion=\toks16
+\nofMPsegments=\count94
+\nofMParguments=\count95
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count96
+\MPscratchDim=\dimen124
+\MPnumerator=\count97
+\makeMPintoPDFobject=\count98
+\everyMPtoPDFconversion=\toks22
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -112,10 +188,6 @@ Package etexcmds Info: Could not find \expanded.
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
 )
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
-)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
@@ -132,34 +204,142 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: legalpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 867.24002pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=1011.78pt
+* \textwidth=469.75502pt
+* \textheight=867.24002pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 7.
+(Font)              <12> on input line 15.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 7.
+(Font)              <8> on input line 15.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 7.
+(Font)              <6> on input line 15.
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--26
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 47.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 47.
+
+Overfull \hbox (36.85701pt too wide) in paragraph at lines 45--92
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
+
+ []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./huifu_tian_supervised_learning_assignment.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<poland_decision_max_tree_depth_validation.png, id=16, 793.46437pt x 231.11343p
+t>
+File: poland_decision_max_tree_depth_validation.png Graphic file (type png)
+<use poland_decision_max_tree_depth_validation.png>
+Package pdftex.def Info: poland_decision_max_tree_depth_validation.png  used on
+ input line 159.
+(pdftex.def)             Requested size: 469.75502pt x 136.8283pt.
+<poland_decision_min_samples_split.png, id=17, 791.20593pt x 224.33812pt>
+File: poland_decision_min_samples_split.png Graphic file (type png)
+<use poland_decision_min_samples_split.png>
+Package pdftex.def Info: poland_decision_min_samples_split.png  used on input l
+ine 187.
+(pdftex.def)             Requested size: 469.75502pt x 133.19357pt.
+ [3 <./poland_decision_max_tree_depth_validation.png (PNG copy)> <./poland_deci
+sion_min_samples_split.png (PNG copy)>]
+<poland_decision_learning_curve_without_max_depth.png, id=24, 263.48438pt x 223
+.58531pt>
+File: poland_decision_learning_curve_without_max_depth.png Graphic file (type p
+ng)
+<use poland_decision_learning_curve_without_max_depth.png>
+Package pdftex.def Info: poland_decision_learning_curve_without_max_depth.png  
+used on input line 205.
+(pdftex.def)             Requested size: 234.8775pt x 199.32121pt.
+<poland_decision_learning_curve_with_max_depth.png, id=25, 322.95656pt x 274.02
+374pt>
+File: poland_decision_learning_curve_with_max_depth.png Graphic file (type png)
+
+<use poland_decision_learning_curve_with_max_depth.png>
+Package pdftex.def Info: poland_decision_learning_curve_with_max_depth.png  use
+d on input line 210.
+(pdftex.def)             Requested size: 234.8775pt x 199.2914pt.
+ [4 <./poland_decision_learning_curve_without_max_depth.png (PNG copy)> <./pola
+nd_decision_learning_curve_with_max_depth.png (PNG copy)>]
+[5] (./huifu_tian_supervised_learning_assignment.aux) ) 
 Here is how much of TeX's memory you used:
- 1430 strings out of 494923
- 20777 string characters out of 6180742
- 70461 words of memory out of 5000000
- 4758 multiletter control sequences out of 15000+600000
- 6675 words of font info for 24 fonts, out of 8000000 for 9000
+ 3704 strings out of 494923
+ 56479 string characters out of 6180742
+ 140156 words of memory out of 5000000
+ 6994 multiletter control sequences out of 15000+600000
+ 8208 words of font info for 29 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,6n,25p,308b,189s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr17.pfb>
-Output written on huifu_tian_supervised_learning_assignment.pdf (1 page, 39249 
-bytes).
+ 42i,16n,40p,1197b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on huifu_tian_supervised_learning_assignment.pdf (5 pages, 39688
+7 bytes).
 PDF statistics:
- 20 PDF objects out of 1000 (max. 8388607)
- 13 compressed objects within 1 object stream
+ 64 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

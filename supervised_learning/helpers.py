@@ -1,8 +1,10 @@
+from collections import defaultdict
 
 import numpy as np
 import matplotlib.pyplot as plt
+import sklearn.pipeline
 from sklearn.metrics import check_scoring
-from sklearn.model_selection._validation import _fit_and_score
+from sklearn.model_selection._validation import _fit_and_score, cross_validate
 from sklearn.naive_bayes import GaussianNB
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -11,7 +13,117 @@ from sklearn.datasets import load_digits
 from sklearn.model_selection import learning_curve, validation_curve, train_test_split
 from sklearn.model_selection import ShuffleSplit
 
+from classes import balanced_sampling
 
+
+def validation_curve_with_undersampling(estimator, X, y, param_name, param_range, scoring, n_jobs, cv, iterations,
+                                        fit_params, error_score, undersampling_ratio, verbose=0, is_pipe=False):
+    """
+
+    Parameters
+    ----------
+    undersampling_ratio: a number representing ratio of majority to minority class.
+    verbose
+    fit_params
+    error_score
+    estimator
+    X: Not undersampled X_train
+    y: Not undersampled y_train
+    param_name
+    param_range
+    scoring
+    n_jobs
+    cv
+    iterations
+
+    Returns
+    -------
+
+    """
+    results = {}
+    for v in param_range:
+        results_store = []
+        estimator.set_params(**{param_name: v})
+        if is_pipe and type(estimator) != sklearn.pipeline.Pipeline:
+            _estimator = make_pipeline(StandardScaler(), estimator)
+            print(type(_estimator))
+        else:
+            _estimator = estimator
+
+        for i in range(0, iterations):
+            X_balanced, y_balanced, idx = balanced_sampling(X, y, r=undersampling_ratio, random_state=42)
+            results_store.append(cross_validate(_estimator, X_balanced, y_balanced, scoring=scoring,
+                                                cv=cv, n_jobs=8, verbose=verbose, fit_params=fit_params,
+                                                return_train_score=True))
+        if not results_store:
+            raise RuntimeError('something went wrong. no results')
+        v_results_array = results_store[0]
+        for r in results_store[1:]:
+            for k, val in r.items():
+                v_results_array[k] = np.concatenate([v_results_array[k], val])
+
+        for k, val in v_results_array.items():
+            mean = np.mean(val)
+            std = np.std(val)
+            row = np.array([v, mean, std])
+            row = row.reshape(1, row.shape[0])
+            if k not in results.keys():
+                results[k] = row
+            else:
+                results[k] = np.concatenate([results[k], row], axis=0)
+
+    return results
+
+
+def plot_validation_curve_with_undersampling(estimator, X, y, param_name, param_range, scoring, n_jobs, cv, iterations,
+                                             fit_params, error_score, undersampling_ratio, verbose=0, is_pipe=False,
+                                             x_axis_is_log=True):
+    _, axes = plt.subplots(1, len(scoring), figsize=(20, 5))
+
+    results = validation_curve_with_undersampling(estimator=estimator, X=X, y=y, param_name=param_name,
+                                                  param_range=param_range, scoring=scoring, n_jobs=n_jobs,
+                                                  cv=cv, iterations=iterations, fit_params=fit_params,
+                                                  error_score=error_score, undersampling_ratio=undersampling_ratio,
+                                                  verbose=verbose, is_pipe=is_pipe)
+
+    for i, score in enumerate(scoring):
+        train_results = results[f'train_{score}']
+        test_results = results[f'test_{score}']
+        v = train_results[:, 0]
+        assert len(v) == len(
+            param_range), f'v = {v}, len(v)={len(v)}. param_range={param_range}, len={len(param_range)}'
+        train_scores_mean = train_results[:, 1]
+        train_scores_std = train_results[:, 2]
+        test_scores_mean = test_results[:, 1]
+        test_scores_std = test_results[:, 2]
+
+        axes[i].set_title(f'{score.capitalize()}')
+        axes[i].set_xlabel(param_name)
+        axes[i].set_ylabel('score')
+        axes[i].set_ylim(0.0, 1.1)
+        lw = 2
+        if x_axis_is_log:
+            axes[i].semilogx(param_range, train_scores_mean, label="Training score",
+                             color="darkorange", lw=lw)
+        else:
+            axes[i].plot(param_range, train_scores_mean, label="Training score",
+                             color="darkorange", lw=lw)
+        axes[i].fill_between(param_range, train_scores_mean - train_scores_std,
+                             train_scores_mean + train_scores_std, alpha=0.2,
+                             color="darkorange", lw=lw)
+        if x_axis_is_log:
+            axes[i].semilogx(param_range, test_scores_mean, label="Cross-validation score",
+                             color="navy", lw=lw)
+        else:
+            axes[i].plot(param_range, test_scores_mean, label="Cross-validation score",
+                         color="navy", lw=lw)
+        axes[i].fill_between(param_range, test_scores_mean - test_scores_std,
+                             test_scores_mean + test_scores_std, alpha=0.2,
+                             color="navy", lw=lw)
+        axes[i].legend(loc="best")
+        axes[i].grid()
+
+    return results, plt
 
 
 def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_jobs, cv):
@@ -30,11 +142,15 @@ def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_j
     lw = 2
     plt.semilogx(param_range, train_scores_mean, label="Training score",
                  color="darkorange", lw=lw)
+    # plt.plot(param_range, train_scores_mean, label="Training score",
+    #              color="darkorange", lw=lw)
     plt.fill_between(param_range, train_scores_mean - train_scores_std,
                      train_scores_mean + train_scores_std, alpha=0.2,
                      color="darkorange", lw=lw)
     plt.semilogx(param_range, test_scores_mean, label="Cross-validation score",
                  color="navy", lw=lw)
+    # plt.plot(param_range, test_scores_mean, label="Cross-validation score",
+    #              color="navy", lw=lw)
     plt.fill_between(param_range, test_scores_mean - test_scores_std,
                      test_scores_mean + test_scores_std, alpha=0.2,
                      color="navy", lw=lw)
@@ -45,7 +161,7 @@ def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_j
 
 
 def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
-                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5), scoring=None):
+                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5), iterations=1, scoring=None):
     """
     Generate 3 plots: the test and training learning curve, the training
     samples vs fit times curve, the fit times vs score curve.
@@ -113,18 +229,34 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
         axes[0].set_ylim(*ylim)
     axes[0].set_xlabel("Training examples")
     axes[0].set_ylabel("Score")
+    train_scores_mean = []
+    train_scores_std = []
+    test_scores_mean = []
+    test_scores_std = []
+    fit_times_mean = []
+    fit_times_std = []
+    for i in range(0, iterations):
+        # 10 times undersample and make 10 learning curves
+        print(f'iteration {i + 1}')
+        train_sizes, train_scores, test_scores, fit_times, _ = \
+            learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs,
+                           train_sizes=train_sizes,
+                           return_times=True,
+                           scoring=scoring)
 
-    train_sizes, train_scores, test_scores, fit_times, _ = \
-        learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs,
-                       train_sizes=train_sizes,
-                       return_times=True,
-                       scoring=scoring)
-    train_scores_mean = np.mean(train_scores, axis=1)
-    train_scores_std = np.std(train_scores, axis=1)
-    test_scores_mean = np.mean(test_scores, axis=1)
-    test_scores_std = np.std(test_scores, axis=1)
-    fit_times_mean = np.mean(fit_times, axis=1)
-    fit_times_std = np.std(fit_times, axis=1)
+        train_scores_mean.append(np.mean(train_scores, axis=1))
+        train_scores_std.append(np.std(train_scores, axis=1))
+        test_scores_mean.append(np.mean(test_scores, axis=1))
+        test_scores_std.append(np.std(test_scores, axis=1))
+        fit_times_mean.append(np.mean(fit_times, axis=1))
+        fit_times_std.append(np.std(fit_times, axis=1))
+
+    train_scores_mean = np.mean(train_scores_mean, axis=0)
+    train_scores_std = np.mean(train_scores_std, axis=0)
+    test_scores_mean = np.mean(test_scores_mean, axis=0)
+    test_scores_std = np.mean(test_scores_std, axis=0)
+    fit_times_mean = np.mean(fit_times_mean, axis=0)
+    fit_times_std = np.mean(fit_times_std, axis=0)
 
     # Plot learning curve
     axes[0].grid()
@@ -162,7 +294,6 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
 
 
 def fit_and_score_pipeline(estimator, X, y, cv, scoring):
-
     pipe = make_pipeline(StandardScaler(), estimator)
 
     train_ind, test_ind = list(cv.split(X, y))[0]
@@ -177,5 +308,5 @@ def fit_and_score_pipeline(estimator, X, y, cv, scoring):
 
 def exp_range(start, end, increment, exp):
     while start < end:
-        yield int(start**exp)
+        yield int(start ** exp)
         start += increment
