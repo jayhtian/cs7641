@@ -16,6 +16,40 @@ from sklearn.model_selection import ShuffleSplit
 from classes import balanced_sampling
 
 
+def fit_and_score_iteratively(classifier, X, y, undersampling_ratio, iterations):
+    results = []
+
+    for i in range(iterations):
+        if undersampling_ratio:
+            X_, y_, idx = balanced_sampling(X, y, r=undersampling_ratio, random_state=42)
+        else:
+            X_, y_ = np.copy(X), np.copy(y)
+
+        X_train, X_test, y_train, y_test = train_test_split(X_, y_, test_size=0.3, random_state=42, stratify=y_)
+
+        classifier.fit(X_train, y_train)
+
+        scorer = check_scoring(classifier, scoring='accuracy')
+        score_a = scorer(classifier, X_test, y_test)
+
+        scorer = check_scoring(classifier, scoring='f1')
+        score_f1 = scorer(classifier, X_test, y_test)
+
+        scorer = check_scoring(classifier, scoring='recall')
+        score_r = scorer(classifier, X_test, y_test)
+
+        scorer = check_scoring(classifier, scoring='precision')
+        score_p = scorer(classifier, X_test, y_test)
+
+        scorer = check_scoring(classifier, scoring='balanced_accuracy')
+        score_ba = scorer(classifier, X_test, y_test)
+
+        results.append((score_a, score_f1, score_p, score_r, score_ba))
+
+    return np.mean(np.array(results), axis=0)
+
+
+
 def validation_curve_with_undersampling(estimator, X, y, param_name, param_range, scoring, n_jobs, cv, iterations,
                                         fit_params, error_score, undersampling_ratio, verbose=0, is_pipe=False):
     """
@@ -42,6 +76,7 @@ def validation_curve_with_undersampling(estimator, X, y, param_name, param_range
     """
     results = {}
     for v in param_range:
+        print(f'param={v}')
         results_store = []
         estimator.set_params(**{param_name: v})
         if is_pipe and type(estimator) != sklearn.pipeline.Pipeline:
@@ -77,7 +112,7 @@ def validation_curve_with_undersampling(estimator, X, y, param_name, param_range
 
 def plot_validation_curve_with_undersampling(estimator, X, y, param_name, param_range, scoring, n_jobs, cv, iterations,
                                              fit_params, error_score, undersampling_ratio, verbose=0, is_pipe=False,
-                                             x_axis_is_log=True):
+                                             x_axis_is_log=True, param_range_idx=0):
     _, axes = plt.subplots(1, len(scoring), figsize=(20, 5))
 
     results = validation_curve_with_undersampling(estimator=estimator, X=X, y=y, param_name=param_name,
@@ -85,6 +120,8 @@ def plot_validation_curve_with_undersampling(estimator, X, y, param_name, param_
                                                   cv=cv, iterations=iterations, fit_params=fit_params,
                                                   error_score=error_score, undersampling_ratio=undersampling_ratio,
                                                   verbose=verbose, is_pipe=is_pipe)
+    if hasattr(param_range[0], '__len__'):
+        param_range = [p[param_range_idx] for p in param_range]
 
     for i, score in enumerate(scoring):
         train_results = results[f'train_{score}']
@@ -96,7 +133,10 @@ def plot_validation_curve_with_undersampling(estimator, X, y, param_name, param_
         train_scores_std = train_results[:, 2]
         test_scores_mean = test_results[:, 1]
         test_scores_std = test_results[:, 2]
-
+        train_scores_mean = train_scores_mean.astype(float)
+        train_scores_std = train_scores_std.astype(float)
+        test_scores_mean = test_scores_mean.astype(float)
+        test_scores_std = test_scores_std.astype(float)
         axes[i].set_title(f'{score.capitalize()}')
         axes[i].set_xlabel(param_name)
         axes[i].set_ylabel('score')
@@ -161,7 +201,7 @@ def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_j
 
 
 def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
-                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5), iterations=1, scoring=None):
+                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5), iterations=1, scoring=None, shuffle=True):
     """
     Generate 3 plots: the test and training learning curve, the training
     samples vs fit times curve, the fit times vs score curve.
@@ -238,11 +278,16 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
     for i in range(0, iterations):
         # 10 times undersample and make 10 learning curves
         print(f'iteration {i + 1}')
+        X_, y_, idx = balanced_sampling(X, y, r=1, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X_, y_, test_size=0.3, random_state=42, stratify=y_)
+
+
         train_sizes, train_scores, test_scores, fit_times, _ = \
-            learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs,
+            learning_curve(estimator, X_train, y_train, cv=cv, n_jobs=n_jobs,
                            train_sizes=train_sizes,
                            return_times=True,
-                           scoring=scoring)
+                           scoring=scoring,
+                           shuffle=shuffle)
 
         train_scores_mean.append(np.mean(train_scores, axis=1))
         train_scores_std.append(np.std(train_scores, axis=1))

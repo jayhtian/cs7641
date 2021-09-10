@@ -159,7 +159,7 @@ Without bounding max tree depth, the baseline model will fit the data to a tree 
 	\makebox[\textwidth]{\includegraphics[width=\textwidth]{poland_decision_max_tree_depth_validation.png}}
 \end{figure}
 
-The validation curves in Figure 1 show increasing training scores in general. The testing scores are increasing at first before tapering off slightly as max\_depth becomes large. The optimal max\_depth value is such that there is no overfitting or underfitting. That point occurs when the test score reaches its highest point before gradually tapering off. The maximum values for all four scores are shown in the table below.
+The validation curves in Figure 1 show increasing training scores in general. The reason is increasing the max tree depth allows the model to fit the training data to increasing accuracy. With a tree of around 20 nodes deep, the model is able to almost perfectly fit the training data. At that point, one would expect generalization error to start decreasing. What's shown in figure 1 is that most of the increase in the various score metrics peak out around max depth of 9. While the training score continues to improve, we prefer to cap max tree depth to the smallest number that maximizes the testing scores. This decision follows from the principle of Occam's Razor which states that simpler models are preferred over more complex ones. 
 
 \begin{center}
 	Table 4: Optimal Max Tree Depth
@@ -221,19 +221,145 @@ The model with max\_depth set to 9 yields is run 20 times using 1:1 balanced sam
 
 \subsubsection*{Baseline model}
 
-Similar to the decision trees, I use the full data set which combines all five data sets and use a 70-30 train-test split. Table 5 column 1 shows that attempting to use neural network to fit the data without first normalizing the inputs leads to non-convergeance. Column 2 normalizes all of the features by removing the mean and scaling to unit variance. Columns 3 and 4 show the results with 3:1 and 1:1 majority to minority class undersampling. With columns 3 and 4, I the scores displayed in the second part of the table have been averaged across 20 independent iterations. As we move from the full data set to a 1:1 rebalanced data set, accuracy decreases while f1, precision, recall, and balanced accuracy all increase. It can be seen that neural networks suffer from the same majority class bias as decision trees: accuracy is maximized by focusing on fitting the model to the majority class while neglecting the minority class. Intuitively, that makes sense, the algorithm strives to maximize accuracy. High accuracy can only be achieved by catering more attention to the majority class. 
+Similar to the decision trees, I use the full data set which combines all five data sets and use a 70-30 train-test split. Table 5 column 1 shows the result of fitting on the full 70\% training set. The results are iterated over 10 sets. Not surprisingly, the model yields an accuracy of 94\% which is roughly equivalent of always guessing label of 0. Columns 2 and 3 explore the effect of undersampling the majority class on the various score metrics. As we move from the full data set to a 1:1 rebalanced data set, accuracy decreases while f1, precision, recall, and balanced accuracy all increase. It can be seen that neural networks suffer from the same majority class bias as decision trees: accuracy is maximized by focusing on fitting the model to the majority class while neglecting the minority class. Intuitively, that makes sense, the algorithm strives to maximize accuracy. High accuracy can only be achieved by catering more attention to the majority class. Column 4 normalizes all of the features but I ran into nonconvergeance at 1000 iterations. I increase the number of iterations to 2000 and I can converge again. The performance with normalized features jumps by 50\% across all of the metrics. \todo{explain why}. 
 
 \subsubsection*{Model Tuning}
-\subsubsection*{Number of Hidden Nodes}
 
+\subsubsection*{Size of Hidden Layers}
+The training and cross validation accuracy scores by varying the number of nodes in a one-hidden layer net are shown in Figure 3. The parameters and results correspond to column 4 in Table 5. The accuracy curve on the train set starts low but increases as more complexity is enabled on the model. Also at first, the increasing complexity in the model benefits the validation scores. The question is what's the optimal number of nodes in the hidden layer that maximizes generalization accuracy? And the answer is 42. Any further increases in model complexity only marginally increases the model fit on the training data while gradually lowering the ability to generalize on the validation set. This is overfitting. One can also see from the training scores after n=42 start to display higher variance, which means that the model's accuracy becomes more dependent on particular idiosyncrasies in the weights and the data itself. \todo{check last sentence.}
 
+At this point, I can do a grid search to find the optimal number of nodes on a 2-hidden layer network. But before that, I will hold the number of nodes at 42 on the first layer and repeat the same procedure as before on the second layer. The results are shown in Figure 4. As you can see, the accuracy on the cross-validation curve is flat, which shows that the extra layer does not seem to add further benefits to the 1-layer model. 
 
+\subsubsection*{Regularization Alpha}
+
+Another parameter to vary is the L2 regularization alpha. This parameter is the scalar term to an added term in the cost function to be minimized. The penalty term is the sum of the weights squared multiplied by alpha/2, which means that any model that minimizes this function will also need to make sure the weights are small as well. The larger the alpha, the greater the penalty and more we can limit potential overfitting. The results are presented in Figure 5. 
+\begin{figure}
+	\centering
+	\begin{subfigure}{.3\textwidth}
+		\centering
+		Figure 3: Hidden Layer 1 Size\\
+		\includegraphics[width=\linewidth]{poland_nn_hidden_layer_size_2_200_accuracy.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.3\textwidth}
+		\centering
+		Figure 4: Hidden Layer 2 Size\\
+		\includegraphics[width=\linewidth]{poland_nn_hidden_layer_2_size_2_60_accuracy.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.3\textwidth}
+		\centering
+		Figure 5: Regularization Alpha\\
+		\includegraphics[width=\linewidth]{poland_nn_alpha_0_10_accuracy.png}
+		
+	\end{subfigure}
+	\label{fig:test}
+\end{figure}
 
 
 \begin{table}
 
 	\centering
 	Table 5: Neural Network Parameters and Results\\
+	\begin{tabular}{ l l l l l l l }
+		\hline
+		Parameter & 1 & 2 & 3 & 4 & 5 & 6\\
+		\hline
+		solver & adam & adam & adam & adam & adam & adam \\
+		activation & relu & relu & relu & relu & relu & relu \\
+		alpha & 1e-4 & 1e-4 & 1e-4 & 1e-4 & 1e-4 & \hl{1e-7} \\
+		hidden\_layer\_sizes & (30,) & (30,) & (30,) & (30,) & \hl{(42, )} & (42, )\\
+		max\_iter & 1000 & 1000 & 1000 & \hl{2000} & \hl{3000} & 3000 \\
+		learning\_rate & constant & constant & constant & constant & constant& constant \\
+		learning\_rate\_init & 0.001 & 0.001 & 0.001 & 0.001 & 0.001 & 0.001 \\
+		momentum & 0.9 & 0.9 & 0.9 & 0.9 & 0.9 & 0.9 \\
+		Normalized? & No & No & No & \hl{Yes} & Yes & Yes\\
+		Undersampled? & No & \hl{3:1} & \hl{1:1} & 1:1 & 1:1 & 1:1 \\
+		\hline
+		Results & & & & & \\
+		\hline
+		Accuracy & 0.94 & 0.66 & 0.57 & 0.74 & 0.75 \\
+		F1 & 0.04 & 0.36 & 0.57 & 0.75 & 0.75 \\
+		Precision & 0.11 & 0.37 & 0.58 & 0.74 & 0.75\\
+		Recall & 0.03 & 0.37 & 0.58 & 0.75 & 0.76\\
+		Balanced accuracy & 0.51 & 0.56 & 0.58 & 0.74 & 0.75\\
+	
+		\hline 
+	\end{tabular}
+\end{table}
+
+\subsection{KNN}
+\subsubsection*{Baseline Model}
+
+
+\begin{table}
+	
+	\centering
+	Table 5: KNN Parameters and Results\\
+	\begin{tabular}{ l l l l l }
+		\hline
+		Parameter & 1 & 2 & 3 & 4\\
+		\hline
+		n\_neighbors & 5 & 5 & 5 & sgd\\
+		weights & uniform & uniform & uniform & relu\\
+		algorithm & auto & auto & auto & 0.01\\
+		p & 2 & 2 & 2 & (30,)\\
+		Undersampled? & No & \hl{3:1} & \hl{1:1} & \\
+		\hline
+		Results & & & & \\
+		\hline
+		Accuracy & 0.95 & 0.74 & 0.65 & 0.643 \\
+		F1 & 0.02 & 0.38 & 0.65 &  \\
+		Precision & 0.10 & 0.47 & 0.65 & 0.648  \\
+		Recall & 0.01 & 0.31 & 0.65 &  \\
+		Balanced accuracy & 0.50 & 0.60 & 0.65 & 0.643 \\
+		
+		\hline 
+	\end{tabular}
+\end{table}
+
+
+\subsection{Boosting}
+\subsubsection*{Baseline Model}
+
+
+\begin{table}
+	
+	\centering
+	Table 5: Boosting Parameters and Results \\
+	\begin{tabular}{ l l l l l }
+		\hline
+		Parameter & 1 & 2 & 3 & 4\\
+		\hline
+		base\_estimator & DecisionTreeClassifier & & sgd & sgd\\
+		n\_estimators & 100 & 100 & relu & relu\\
+		learning\_rate & 1 & 1 & 0.01 & 0.01\\
+		algorithm & SAMME.R & SAMME.R & (30,) & (30,)\\
+		Normalized? & No & No & Yes & Yes\\
+		Undersampled? & No & \hl{1:1} &  & \hl{1:1}\\
+		\hline
+		Results & & & & \\
+		\hline
+		Accuracy & 0.95 & 0.80 & 0.757 & 0.643 \\
+		F1 & 0.23 & 0.80 & 0.151 & 0.635 \\
+		Precision & 0.57 & 0.80 & 0.597 & 0.648  \\
+		Recall & 0.14 & 0.81 & 0.089 & 0.624 \\
+		Balanced accuracy & 0.57 & 0.80 & 0.535 & 0.643 \\
+		
+		\hline 
+	\end{tabular}
+\end{table}
+
+
+
+\subsection{SVM}
+\subsubsection*{Baseline Model}
+
+
+\begin{table}
+	
+	\centering
+	Table 5: KNN Parameters and Results\\
 	\begin{tabular}{ l l l l l }
 		\hline
 		Parameter & 1 & 2 & 3 & 4\\
@@ -256,7 +382,7 @@ Similar to the decision trees, I use the full data set which combines all five d
 		Precision & & 0.333 & 0.597 & 0.648  \\
 		Recall & & 0.002 & 0.089 & 0.624 \\
 		Balanced accuracy & & 0.501 & 0.535 & 0.643 \\
-	
+		
 		\hline 
 	\end{tabular}
 \end{table}

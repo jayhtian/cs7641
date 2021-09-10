@@ -54,11 +54,13 @@ if __name__ == '__main__':
     X, y = data[:, :-1], data[:, -1]
 
     print(f'X.shape={X.shape}, y.shape={y.shape}')
-
+    X_,  y_, idx = balanced_sampling(X, y, 1, random_state=0)
     # optimize hidden_layer_sizes
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-    param_range = range(1, 4)
+    param_range = range(1, 3)
+    # param_range = list(range(1, 71, 2)) + list(range(70, 210, 10)) + list(range(200, 500, 20)) + list(range(500, 1000, 50))
+    param_range = [(p, 2) for p in param_range]
     scoring = ['accuracy', 'f1', 'recall', 'precision']
 
     cv = StratifiedKFold(n_splits=2, shuffle=True, random_state=0)
@@ -68,6 +70,7 @@ if __name__ == '__main__':
                                                                   param_name='hidden_layer_sizes',
                                                                   param_range=param_range, fit_params=None,
                                                                   error_score='raise',
-                                                                  cv=cv, scoring=scoring, n_jobs=8, iterations=1,
-                                                                  undersampling_ratio=1, is_pipe=True, plot_type='log')
+                                                                  cv=cv, scoring=scoring, n_jobs=8, iterations=5,
+                                                                  undersampling_ratio=1, is_pipe=True,
+                                                                  x_axis_is_log=True)
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.8.30)  8 SEP 2021 21:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.8.30)  10 SEP 2021 00:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -123,7 +123,11 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \c@subfigure=\count91
 \c@subtable=\count92
 )
-(./huifu_tian_supervised_learning_assignment.aux)
+(./huifu_tian_supervised_learning_assignment.aux
+
+LaTeX Warning: Label `fig:test' multiply defined.
+
+)
 \openout1 = `huifu_tian_supervised_learning_assignment.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
@@ -138,8 +142,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count93
 \scratchdimen=\dimen123
@@ -316,30 +319,57 @@ d on input line 210.
 (pdftex.def)             Requested size: 234.8775pt x 199.2914pt.
  [4 <./poland_decision_learning_curve_without_max_depth.png (PNG copy)> <./pola
 nd_decision_learning_curve_with_max_depth.png (PNG copy)>]
-[5] (./huifu_tian_supervised_learning_assignment.aux) ) 
+<poland_nn_hidden_layer_size_2_200_accuracy.png, id=29, 198.7425pt x 227.34938p
+t>
+File: poland_nn_hidden_layer_size_2_200_accuracy.png Graphic file (type png)
+<use poland_nn_hidden_layer_size_2_200_accuracy.png>
+Package pdftex.def Info: poland_nn_hidden_layer_size_2_200_accuracy.png  used o
+n input line 241.
+(pdftex.def)             Requested size: 140.92793pt x 161.21797pt.
+<poland_nn_hidden_layer_2_size_2_60_accuracy.png, id=30, 200.24812pt x 225.0909
+4pt>
+File: poland_nn_hidden_layer_2_size_2_60_accuracy.png Graphic file (type png)
+<use poland_nn_hidden_layer_2_size_2_60_accuracy.png>
+Package pdftex.def Info: poland_nn_hidden_layer_2_size_2_60_accuracy.png  used 
+on input line 247.
+(pdftex.def)             Requested size: 140.92793pt x 158.42122pt.
+<poland_nn_alpha_0_10_accuracy.png, id=31, 201.00093pt x 223.58531pt>
+File: poland_nn_alpha_0_10_accuracy.png Graphic file (type png)
+<use poland_nn_alpha_0_10_accuracy.png>
+Package pdftex.def Info: poland_nn_alpha_0_10_accuracy.png  used on input line 
+253.
+(pdftex.def)             Requested size: 140.92793pt x 156.7611pt.
+
+[5 <./poland_nn_hidden_layer_size_2_200_accuracy.png (PNG copy)> <./poland_nn_h
+idden_layer_2_size_2_60_accuracy.png (PNG copy)> <./poland_nn_alpha_0_10_accura
+cy.png (PNG copy)>] [6] (./huifu_tian_supervised_learning_assignment.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3704 strings out of 494923
- 56479 string characters out of 6180742
- 140156 words of memory out of 5000000
- 6994 multiletter control sequences out of 15000+600000
+ 3719 strings out of 494923
+ 57166 string characters out of 6180742
+ 140195 words of memory out of 5000000
+ 7006 multiletter control sequences out of 15000+600000
  8208 words of font info for 29 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 42i,16n,40p,1197b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on huifu_tian_supervised_learning_assignment.pdf (5 pages, 39688
-7 bytes).
+ 42i,16n,40p,1292b,378s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb>
+Output written on huifu_tian_supervised_learning_assignment.pdf (6 pages, 48489
+3 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 70 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
