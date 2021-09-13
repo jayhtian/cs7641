@@ -16,38 +16,93 @@ from sklearn.model_selection import ShuffleSplit
 from classes import balanced_sampling
 
 
-def fit_and_score_iteratively(classifier, X, y, undersampling_ratio, iterations):
-    results = []
+def fit_and_score(classifier, X_train, y_train, X_test, y_test, binary_classification=True):
+    classifier.fit(X_train, y_train)
+
+    scorer = check_scoring(classifier, scoring='accuracy')
+    test_score_a = scorer(classifier, X_test, y_test)
+
+    scorer = check_scoring(classifier, scoring='accuracy')
+    train_score_a = scorer(classifier, X_train, y_train)
+
+    if binary_classification:
+        scorer = check_scoring(classifier, scoring='f1')
+        test_score_f1 = scorer(classifier, X_test, y_test)
+
+        scorer = check_scoring(classifier, scoring='recall')
+        test_score_r = scorer(classifier, X_test, y_test)
+
+        scorer = check_scoring(classifier, scoring='precision')
+        test_score_p = scorer(classifier, X_test, y_test)
+
+        scorer = check_scoring(classifier, scoring='balanced_accuracy')
+        test_score_ba = scorer(classifier, X_test, y_test)
+
+        scorer = check_scoring(classifier, scoring='f1')
+        train_score_f1 = scorer(classifier, X_train, y_train)
+
+        scorer = check_scoring(classifier, scoring='recall')
+        train_score_r = scorer(classifier, X_train, y_train)
+
+        scorer = check_scoring(classifier, scoring='precision')
+        train_score_p = scorer(classifier, X_train, y_train)
+
+        scorer = check_scoring(classifier, scoring='balanced_accuracy')
+        train_score_ba = scorer(classifier, X_train, y_train)
+
+        return np.array((train_score_a, train_score_f1, train_score_p, train_score_r, train_score_ba)), \
+               np.array((test_score_a, test_score_f1, test_score_p, test_score_r, test_score_ba))
+    else:
+        return np.array(train_score_a), \
+               np.array(test_score_a)
+
+
+def fit_and_score_iteratively(classifier, X=None, y=None, undersampling_ratio=None, iterations=1,
+                              use_validation_set=False, cv=None,
+                              include_train_results=False,
+                              X_train=None, y_train=None,
+                              X_test=None, y_test=None,
+                              binary_classification=True
+                              ):
+    test_results = []
+    train_results = []
 
     for i in range(iterations):
+
+        # reduce dataset
         if undersampling_ratio:
             X_, y_, idx = balanced_sampling(X, y, r=undersampling_ratio, random_state=42)
         else:
             X_, y_ = np.copy(X), np.copy(y)
+        if X_train is not None and X_test is not None and y_train is not None and y_test is not None:
+            ...
+        else:
+            X_train, X_test, y_train, y_test = train_test_split(X_, y_, test_size=0.3, random_state=42, stratify=y_)
 
-        X_train, X_test, y_train, y_test = train_test_split(X_, y_, test_size=0.3, random_state=42, stratify=y_)
+        if use_validation_set and cv:
+            _train_results = []
+            _test_results = []
+            for train_ind, test_ind in list(cv.split(X_train, y_train)):
+                _X_train, _y_train, _X_validation, _y_validation = X_train[train_ind], y_train[train_ind], \
+                                                                   X_train[test_ind], y_train[test_ind]
+                _train_scores, _test_scores = fit_and_score(classifier, _X_train, _y_train, _X_validation,
+                                                            _y_validation,
+                                                            binary_classification=binary_classification)
+                _train_results.append(_train_scores)
+                _test_results.append(_test_scores)
+            iteration_train = np.mean(np.array(_train_results), axis=0)
+            iteration_test = np.mean(np.array(_test_results), axis=0)
+        else:
+            iteration_train, iteration_test = fit_and_score(classifier, X_train, y_train, X_test, y_test,
+                                                            binary_classification=binary_classification)
 
-        classifier.fit(X_train, y_train)
+        train_results.append(iteration_train)
+        test_results.append(iteration_test)
 
-        scorer = check_scoring(classifier, scoring='accuracy')
-        score_a = scorer(classifier, X_test, y_test)
-
-        scorer = check_scoring(classifier, scoring='f1')
-        score_f1 = scorer(classifier, X_test, y_test)
-
-        scorer = check_scoring(classifier, scoring='recall')
-        score_r = scorer(classifier, X_test, y_test)
-
-        scorer = check_scoring(classifier, scoring='precision')
-        score_p = scorer(classifier, X_test, y_test)
-
-        scorer = check_scoring(classifier, scoring='balanced_accuracy')
-        score_ba = scorer(classifier, X_test, y_test)
-
-        results.append((score_a, score_f1, score_p, score_r, score_ba))
-
-    return np.mean(np.array(results), axis=0)
-
+    if include_train_results:
+        return np.mean(np.array(train_results), axis=0), np.mean(np.array(test_results), axis=0)
+    else:
+        return np.mean(np.array(test_results), axis=0)
 
 
 def validation_curve_with_undersampling(estimator, X, y, param_name, param_range, scoring, n_jobs, cv, iterations,
@@ -147,7 +202,7 @@ def plot_validation_curve_with_undersampling(estimator, X, y, param_name, param_
                              color="darkorange", lw=lw)
         else:
             axes[i].plot(param_range, train_scores_mean, label="Training score",
-                             color="darkorange", lw=lw)
+                         color="darkorange", lw=lw)
         axes[i].fill_between(param_range, train_scores_mean - train_scores_std,
                              train_scores_mean + train_scores_std, alpha=0.2,
                              color="darkorange", lw=lw)
@@ -166,7 +221,8 @@ def plot_validation_curve_with_undersampling(estimator, X, y, param_name, param_
     return results, plt
 
 
-def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_jobs, cv):
+def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_jobs, cv,
+                          title=None, is_log_axis=True, figsize=None):
     train_scores, test_scores = validation_curve(
         estimator, X, y, param_name=param_name, param_range=param_range,
         scoring=scoring, n_jobs=n_jobs, cv=cv)
@@ -175,29 +231,49 @@ def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_j
     test_scores_mean = np.mean(test_scores, axis=1)
     test_scores_std = np.std(test_scores, axis=1)
 
-    plt.title("Validation Curve with SVM")
-    plt.xlabel(r"$\gamma$")
-    plt.ylabel("Score")
+    plt = plot_curves(param_range, train_scores_mean, train_scores_std, test_scores_mean, test_scores_std,
+                title, scoring, is_log_axis, figsize)
+
+    param_range = np.array(param_range)
+    param_range = param_range.reshape(param_range.shape[0], 1)
+    return train_scores, test_scores, \
+           np.concatenate([param_range, train_scores], axis=1), np.concatenate([param_range, test_scores], axis=1), \
+        plt
+
+
+def plot_curves(param_range, train_scores_mean, train_scores_std, test_scores_mean, test_scores_std,
+                title, scoring, is_log_axis=True, figsize=None):
+    if figsize:
+        plt.figure(figsize=figsize)
+    if title:
+        plt.title(title)
+    plt.xlabel(f'param_name')
+
+    plt.ylabel(scoring)
     plt.ylim(0.0, 1.1)
     lw = 2
-    plt.semilogx(param_range, train_scores_mean, label="Training score",
+    if is_log_axis:
+        plt.semilogx(param_range, train_scores_mean, label="Training score",
+                     color="darkorange", lw=lw)
+    else:
+        plt.plot(param_range, train_scores_mean, label="Training score",
                  color="darkorange", lw=lw)
-    # plt.plot(param_range, train_scores_mean, label="Training score",
-    #              color="darkorange", lw=lw)
     plt.fill_between(param_range, train_scores_mean - train_scores_std,
                      train_scores_mean + train_scores_std, alpha=0.2,
                      color="darkorange", lw=lw)
-    plt.semilogx(param_range, test_scores_mean, label="Cross-validation score",
+    if is_log_axis:
+        plt.semilogx(param_range, test_scores_mean, label="Cross-validation score",
+                     color="navy", lw=lw)
+    else:
+        plt.plot(param_range, test_scores_mean, label="Cross-validation score",
                  color="navy", lw=lw)
-    # plt.plot(param_range, test_scores_mean, label="Cross-validation score",
-    #              color="navy", lw=lw)
     plt.fill_between(param_range, test_scores_mean - test_scores_std,
                      test_scores_mean + test_scores_std, alpha=0.2,
                      color="navy", lw=lw)
     plt.legend(loc="best")
     plt.grid()
 
-    return train_scores, test_scores
+    return plt
 
 
 def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
@@ -281,7 +357,6 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
         X_, y_, idx = balanced_sampling(X, y, r=1, random_state=42)
         X_train, X_test, y_train, y_test = train_test_split(X_, y_, test_size=0.3, random_state=42, stratify=y_)
 
-
         train_sizes, train_scores, test_scores, fit_times, _ = \
             learning_curve(estimator, X_train, y_train, cv=cv, n_jobs=n_jobs,
                            train_sizes=train_sizes,
@@ -289,6 +364,9 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
                            scoring=scoring,
                            shuffle=shuffle)
 
+        if np.isnan(train_scores).any():
+            print('lol')
+            continue
         train_scores_mean.append(np.mean(train_scores, axis=1))
         train_scores_std.append(np.std(train_scores, axis=1))
         test_scores_mean.append(np.mean(test_scores, axis=1))
@@ -296,7 +374,7 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
         fit_times_mean.append(np.mean(fit_times, axis=1))
         fit_times_std.append(np.std(fit_times, axis=1))
 
-    train_scores_mean = np.mean(train_scores_mean, axis=0)
+    train_scores_mean = np.mean(train_scores_mean, axis=0, )
     train_scores_std = np.mean(train_scores_std, axis=0)
     test_scores_mean = np.mean(test_scores_mean, axis=0)
     test_scores_std = np.mean(test_scores_std, axis=0)

@@ -3,12 +3,16 @@ import pandas as pd
 import numpy as np
 from io import StringIO
 # from sklearn.externals.six import StringIO
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree import export_graphviz
 from classes import BalancedUndersamplingShuffle, balanced_sampling
 from helpers import plot_learning_curve, plot_validation_curve, plot_validation_curve_with_undersampling, \
-    fit_and_score_pipeline
+    fit_and_score_pipeline, fit_and_score_iteratively
 from sklearn.metrics import check_scoring
 from sklearn.model_selection._validation import _fit_and_score
 from sklearn.model_selection import ShuffleSplit, StratifiedKFold
@@ -58,19 +62,12 @@ if __name__ == '__main__':
     # optimize hidden_layer_sizes
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-    param_range = range(1, 3)
-    # param_range = list(range(1, 71, 2)) + list(range(70, 210, 10)) + list(range(200, 500, 20)) + list(range(500, 1000, 50))
-    param_range = [(p, 2) for p in param_range]
-    scoring = ['accuracy', 'f1', 'recall', 'precision']
-
+    # No undersampling
+    classifier = SVC()
     cv = StratifiedKFold(n_splits=2, shuffle=True, random_state=0)
-    classifier = MLPClassifier(solver='sgd', alpha=1e-2, random_state=0, max_iter=1000)
-
-    results_store, plt = plot_validation_curve_with_undersampling(classifier, X_train, y_train,
-                                                                  param_name='hidden_layer_sizes',
-                                                                  param_range=param_range, fit_params=None,
-                                                                  error_score='raise',
-                                                                  cv=cv, scoring=scoring, n_jobs=8, iterations=5,
-                                                                  undersampling_ratio=1, is_pipe=True,
-                                                                  x_axis_is_log=True)
+    pipe = make_pipeline(StandardScaler(), classifier)
+    train_results, test_results = \
+        fit_and_score_iteratively(pipe, X, y, 1, iterations=2, use_validation_set=False,
+                                  include_train_results=True)
+    print(train_results, test_results)
 
