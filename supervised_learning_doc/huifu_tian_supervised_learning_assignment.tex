@@ -352,7 +352,11 @@ I adjust the number of base estimators used (n\_estimators) and plot accuracy sc
 		\includegraphics[width=\linewidth]{poland_xgb_min_impurity_decrease_accuracy.png}
 		
 	\end{subfigure}
-
+	\begin{subfigure}{0.35\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{poland_xgb_learning_curve.png}
+		
+	\end{subfigure}
 	\label{fig:test}
 \end{figure}
 
@@ -386,19 +390,6 @@ Figure 5e shows the train/validation curves from modulating min impurity decreas
 	\end{tabular}
 \end{table}
 
-\subsection*{Learning Curve}
-\begin{figure}
-	\centering
-	Figure 6:\\
-	\begin{subfigure}{0.4\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{poland_xgb_learning_curve.png}
-		
-	\end{subfigure}
-	
-	\label{fig:test}
-\end{figure}
-
 \subsection{SVM}
 \subsubsection*{Baseline Model}
 The results from a baseline fit using rbf kernel with and without undersampling are shown in table 1. 
@@ -409,7 +400,7 @@ The baseline results from experimenting with ``linear'', ``polynomial'', ``rbf''
 
 \begin{figure}
 	\centering
-	Figure 7: Kernel\\
+	Figure 6: Kernel\\
 	\begin{subfigure}{\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{poland_svm_kernel.png}
@@ -448,23 +439,298 @@ I load the MNIST data through Keras and load them into the standard train/test s
 
 \begin{table}
 	\centering
-	Table 1: Baseline Model Performance
+	Table 7: Baseline Model Performance
 	\begin{tabular}{ l l l l l l | l l l l l }
 		\hline
 		&DT  & NN & KNN& XGB & SVM & DT & NN & KNN & XGB & SVM \\
 		\hline
 		One-hot encoding?&No  &No  &No  & No &No &Yes &Yes &Yes &Yes &Yes \\
-		Accuracy      &0.81&0.94&0.95&0.97&   &0.81&0.57&0.65&0.86&  \\
+		Accuracy      &0.81&0.90&0.94&0.91&0.96&0.81&0.87&0.94& N/A & N/A \\
 		\hline 
-		
 		
 	\end{tabular}
 	\footnotetext[1]{Only one iteration of fitting}
 	\footnotetext[2]{ratio of the post-undersampled majority to minority class}
 \end{table}
 
- 
+
 \subsection{Decision Tree}
+\subsubsection*{Baseline Model}
+\begin{table}
+	
+	\centering
+	Table 7: MNIST Decision Tree Results \\
+	\begin{tabular}{ l c c c c c }
+		\hline
+		& base & max depth & min samples & min samples & min impurity\\
+		& model & & split & leaf & decrease \\
+		\hline
+		Accuracy & 0.81 & 0.81 & 0.81 & 0.81 & 0.81 \\
+		Optimal value & None & 11 & 2 & 4 & 0 \\
+		
+		
+		\hline 
+	\end{tabular}
+\end{table}
+
+\subsubsection*{Tree Max Depth}
+The model performance and optimal value of tree max depth that maximizes the cross-validation accuracy score is shown in Table 8. The accuracy curve starts low when max tree depth is 1 since the complexity is too low. We have 10 output classes and predicting on one pixel value will not suffice. Both training and cross validation scores improve as we allow for deeper trees. The cross validation curve stabilizes and does not decrease after reaching max depth of 11, which means that the nodes after the 11th feature only nodes and leaves that contain higher levels of impurity and add no additional predictive power. 
+
+
+\begin{figure}
+	\centering
+	Figure 7:\\
+	\begin{subfigure}{.24\textwidth}
+		\centering
+		a: max tree depth\\
+		\includegraphics[width=\linewidth]{mnist_decision_max_depth.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\centering
+		b: min samples split\\
+		\includegraphics[width=\linewidth]{mnist_decision_min_samples_split.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\centering
+		c: min samples split\\
+		\includegraphics[width=\linewidth]{mnist_decision_min_samples_leaf.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\centering
+		d: min impurity decrease\\
+		\includegraphics[width=\linewidth]{mnist_decision_min_impurity_decrease.png}
+		
+	\end{subfigure}
+		\begin{subfigure}{.34\textwidth}
+		\centering
+		e: Learning Curve\\
+		\includegraphics[width=\linewidth]{mnist_decision_learning.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.34\textwidth}
+		\centering
+		f: Learning Curve More samples\\
+		\includegraphics[width=\linewidth]{mnist_decision_learning2.png}
+		
+	\end{subfigure}
+\end{figure}
+
+
+
+
+\subsubsection*{Min Samples Split and Min Samples Leaf}
+The validation curves are shown in Figure 8b and 8c. Both figures look similar in that the train curves are always decreasing and the validation curves are flat and then start to decrease. This means that our fit on the training data gets worse when we remove complexity. Also our model does not reach a point of overfitting by increasing the complexity. The extra nodes and leaves that are kept have a net 0 benefit/cost to the generalization error, although they help improve the training scores. This means that the decision tree fundamentally does not have enough complexity to model the true relationship between features and output. 
+
+\subsubsection*{Min Impurity Decrease}
+Figure 8d shows the validation curves using min impurity decrease. Both curves are mostly in sync as they start high at 0 and decrease as they head towards 0.1. Min impurity decrease is a fractional threshold that prevents a node from being split if the resulting decrease in impurity is less than this value. We see that letting the model fit with this value set to 0 results in the best performance. The reason is that our model was shown to be resistant to overfitting even when the tree is allowed to grow to its max depth, and any restrictions on its complexity has the effect of reducing its performance. 
+
+\subsubsection*{Learning Curves}
+The learning curves with max tree depth set at the optimal value for generalization are shown in Figure 8e. The training curve decreases gradually after starting at close to 100\% accuracy with few samples because restricting the complexity of the model reduces the fit on a larger and larger training set. The opposite is the case where restricting the complexity prevents fitting to the noise on the validation set. Because the validation curve is still increasing by the time all 3500 samples are used, it's likely that increasing the number of samples will also increase the performance of the model. Figure 8f which includes 30000 training samples instead of 3500 shows how the model can improve with more samples.
+
+\subsection{Neural Network}
+\subsubsection*{Baseline Model}
+\begin{table}
+	
+	\centering
+	Table 8: MNIST Neural Network Results\\
+	\begin{tabular}{ l c c c c }
+		\hline
+		& base model & 1 hidden layer & 2 hidden layers & alpha \\
+		\hline
+		Accuracy & 0.87 & 0.81 & 0.81 & 0.81 \\
+		Optimal & (30, ) & (400, ) & (400, ?) & ? \\
+		
+		
+		\hline 
+	\end{tabular}
+\end{table}
+
+\subsubsection*{Hidden Layer Size}
+
+The validation curves while modulating the number of nodes in one hidden layer from 0 to 1000 is shown in Figure 9a. One can see that the model needs a minimum of 30 nodes before reaching an accuracy of 80\%. Both training set scores and validation set scores move in tandem. They start off very low between 10 nodes and 20 nodes because that's roughly equivalent to having no hidden layer as there are 10 output nodes. As the number of nodes increase, the validation scores increase gradually after first shooting up before settling at a flat region around 400-1000 nodes. Setting the number of nodes to 400 in the first layer, the results by modulating the number of nodes in the second hidden layer from 10 to 500 is shown in Figure 8b. The number of nodes shoots up when at 30 nodes and fluctuates between 30 and 100 and reaches a local maximum at 200 nodes. After 200, the accuracy score tapers a bit before increasing slightly again at 400. Between 30 and 450, the optimal number of nodes is approximately 200, which is when the the cross validation scores no longer show signs of instability and the model performs similarly to a more complex model with double the number of nodes. 
+
+
+\begin{figure}
+	\centering
+	Figure 8:\\
+	\begin{subfigure}{.30\textwidth}
+		\centering
+		a: Hidden Layer 1 Nodes\\
+		\includegraphics[width=\linewidth]{mnist_nn_hidden_layer_size.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.30\textwidth}
+		\centering
+		b: Hidden Layer 2 Nodes\\
+		\includegraphics[width=\linewidth]{mnist_nn_hidden_layer_2_size.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.34\textwidth}
+		\centering
+		c: Extended Learning Curves\\
+		\includegraphics[width=\linewidth]{mnist_knn_learning2.png}
+		
+	\end{subfigure}
+	\label{fig:test}
+\end{figure}
+
+
+
+
+\subsection{KNN}
+\subsubsection*{Baseline Model}
+\subsubsection*{Model Tuning}
+\subsubsection*{k}
+The validation curves are shown in Figure 9. We see that KNN prefers to have as few neighbors as possible when generating the prediction, i.e. k=1. This means that adding more neighbors and letting the vote determine the prediction adds rather than removes noise to the prediction. The errors as a function of k for MNIST is different from those for the Polish bankruptcy data in that the errors are minimized at a much higher value of k in the Polish data. Also, ranging the number of samples in the training set (from 500 to 10000 )does not change the monotonically decreasing nature of the validation curve. This suggests that the position of the digits on the 28x28 grid and differences in handwriting play a large role. For example, the Euclidean distance measure assigns a high value of distance to two samples of the digit ``1'' if the pixels do not overlap, even if they look identical otherwise. Also, it's possible that the same letter 4 can be written very differently but a ``9'' might have a lower distance measure. As we sample more digits - increase k, we start introducing noise in our prediction. In other words, you are better off finding another digit that has the same handwriting and same translational position on the grid than by finding the closest k neighbors. On the other hand, the features in the Polish data are meaningful. It's impossible for two companies to be in the same output class if you simply shift all the values in the features to the right by 4 positions. As a result, there is much less noise by adding neighbors and locking out samples in the same class that are translated. 
+
+
+
+\begin{figure}
+	\centering
+	Figure 9:\\
+	\begin{subfigure}{.30\textwidth}
+		\centering
+		a: k\\
+		\includegraphics[width=\linewidth]{mnist_knn_k.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.34\textwidth}
+		\centering
+		b: Learning Curves\\
+		\includegraphics[width=\linewidth]{mnist_knn_learning.png}
+		
+	\end{subfigure}
+		\begin{subfigure}{.34\textwidth}
+		\centering
+		c: Extended Learning Curves\\
+		\includegraphics[width=\linewidth]{mnist_knn_learning2.png}
+		
+	\end{subfigure}
+	\label{fig:test}
+\end{figure}
+
+\begin{table}
+	
+	\centering
+	Table 9: KNN Results \todo{not done}\\
+	\begin{tabular}{ l c c c c }
+		\hline
+		& base model & 1 hidden layer & 2 hidden layers & alpha \\
+		\hline
+		Accuracy & 0.87 & 0.81 & 0.81 & 0.81 \\
+		Optimal & (30, ) & (400, ) & (400, ?) & ? \\
+		
+		
+		\hline 
+	\end{tabular}
+\end{table}
+\subsubsection*{Learning Curves}
+
+At k=1, the training set's learning curve is at 100\% because each query point in the training set can be found in memory with distance=0. The learning curve starts low and increases monotonically. As more samples are memoized, the KNN's ability to predict given an unseen data point increases. Since the curve keeps increasing near the end, we can benefit from more adding more data points in the training set. Figure 9c shows the learning curves after you add up to 30000 samples to the training set. As expected, the cross validation learning curves extends its increase past the previous 0.935 level at 5000 samples.
+
+
+\subsection{XGBoost}
+\subsubsection*{Baseline Model}
+
+\subsubsection*{Model Tuning}
+\begin{table}
+	
+	\centering
+	Table 10: XGBoost Results \todo{ not done}\\
+	\begin{tabular}{ l c c c c }
+		\hline
+		& base model & 1 hidden layer & 2 hidden layers & alpha \\
+		\hline
+		Accuracy & 0.87 & 0.81 & 0.81 & 0.81 \\
+		Optimal & (30, ) & (400, ) & (400, ?) & ? \\
+		
+		
+		\hline 
+	\end{tabular}
+\end{table}
+
+
+
+\begin{figure}
+	\centering
+	Figure 10 \todo{ XGBoost figures - todo}:\\
+	\begin{subfigure}{.30\textwidth}
+		\centering
+		a: k\\
+		\includegraphics[width=\linewidth]{mnist_knn_k.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.34\textwidth}
+		\centering
+		b: Learning Curves\\
+		\includegraphics[width=\linewidth]{mnist_knn_learning.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.34\textwidth}
+		\centering
+		c: Extended Learning Curves\\
+		\includegraphics[width=\linewidth]{mnist_knn_learning2.png}
+		
+	\end{subfigure}
+	\label{fig:test}
+\end{figure}
+
+
+\subsubsection*{n estimators}
+The results of 
+
+\subsubsection*{max depth}
+
+\subsubsection*{min samples split / min samples leaf}
+
+\subsection{SVM}
+\subsubsection*{Baseline Model}
+\subsubsection*{Model Tuning}
+\subsubsection*{Kernel}
+
+\begin{table}
+	
+	\centering
+	Table 11: SVM Results \\
+	\begin{tabular}{ l c c c c }
+		\hline
+		& linear & poly & rbf(Gaussian) & sigmoid\\
+		\hline
+		Accuracy & 0.68 & 0.51 & 0.64 & 0.51 \\
+		\hline 
+	\end{tabular}
+\end{table}
+
+
+
+
+\begin{figure}
+	\centering
+	Figure 11: SVM\\
+	\begin{subfigure}{.30\textwidth}
+		\centering
+		a: k\\
+		\includegraphics[width=\linewidth]{mnist_svm_kernel.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.34\textwidth}
+		\centering
+		b: Learning Curves\\
+		\includegraphics[width=\linewidth]{mnist_knn_learning.png}
+		
+	\end{subfigure}
+	\begin{subfigure}{.34\textwidth}
+		\centering
+		c: Extended Learning Curves\\
+		\includegraphics[width=\linewidth]{mnist_knn_learning2.png}
+		
+	\end{subfigure}
+	\label{fig:test}
+\end{figure}
+
 
 
 \begin{center}

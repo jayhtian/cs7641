@@ -62,8 +62,9 @@ def fit_and_score_iteratively(classifier, X=None, y=None, undersampling_ratio=No
                               include_train_results=False,
                               X_train=None, y_train=None,
                               X_test=None, y_test=None,
-                              binary_classification=True
-                              ):
+                              binary_classification=True,
+                              ohe=False, y_train_ohe=None,
+                              y_test_ohe=None):
     test_results = []
     train_results = []
 
@@ -83,8 +84,13 @@ def fit_and_score_iteratively(classifier, X=None, y=None, undersampling_ratio=No
             _train_results = []
             _test_results = []
             for train_ind, test_ind in list(cv.split(X_train, y_train)):
-                _X_train, _y_train, _X_validation, _y_validation = X_train[train_ind], y_train[train_ind], \
-                                                                   X_train[test_ind], y_train[test_ind]
+                if ohe:
+
+                    _X_train, _y_train, _X_validation, _y_validation = X_train[train_ind], y_train[train_ind], \
+                                                                       X_train[test_ind], y_train_ohe[test_ind]
+                else:
+                    _X_train, _y_train, _X_validation, _y_validation = X_train[train_ind], y_train[train_ind], \
+                                                                       X_train[test_ind], y_train[test_ind]
                 _train_scores, _test_scores = fit_and_score(classifier, _X_train, _y_train, _X_validation,
                                                             _y_validation,
                                                             binary_classification=binary_classification)
@@ -93,8 +99,12 @@ def fit_and_score_iteratively(classifier, X=None, y=None, undersampling_ratio=No
             iteration_train = np.mean(np.array(_train_results), axis=0)
             iteration_test = np.mean(np.array(_test_results), axis=0)
         else:
-            iteration_train, iteration_test = fit_and_score(classifier, X_train, y_train, X_test, y_test,
-                                                            binary_classification=binary_classification)
+            if ohe:
+                iteration_train, iteration_test = fit_and_score(classifier, X_train, y_train_ohe, X_test, y_test_ohe,
+                                                                binary_classification=binary_classification)
+            else:
+                iteration_train, iteration_test = fit_and_score(classifier, X_train, y_train, X_test, y_test,
+                                                                binary_classification=binary_classification)
 
         train_results.append(iteration_train)
         test_results.append(iteration_test)
@@ -222,7 +232,7 @@ def plot_validation_curve_with_undersampling(estimator, X, y, param_name, param_
 
 
 def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_jobs, cv,
-                          title=None, is_log_axis=True, figsize=None):
+                          title=None, is_log_axis=True, figsize=None, plot_param_index=None):
     train_scores, test_scores = validation_curve(
         estimator, X, y, param_name=param_name, param_range=param_range,
         scoring=scoring, n_jobs=n_jobs, cv=cv)
@@ -230,44 +240,53 @@ def plot_validation_curve(estimator, X, y, param_name, param_range, scoring, n_j
     train_scores_std = np.std(train_scores, axis=1)
     test_scores_mean = np.mean(test_scores, axis=1)
     test_scores_std = np.std(test_scores, axis=1)
-
-    plt = plot_curves(param_range, train_scores_mean, train_scores_std, test_scores_mean, test_scores_std,
-                title, scoring, is_log_axis, figsize)
-
+    try:
+        plt = plot_curves(param_range, train_scores_mean, train_scores_std, test_scores_mean, test_scores_std,
+                    title, scoring, is_log_axis, figsize, plot_param_index, param_name)
+    except:
+        ...
+    train_scores_mean = train_scores_mean.reshape((train_scores_mean.shape[0], 1))
+    test_scores_mean = test_scores_mean.reshape((test_scores_mean.shape[0], 1))
     param_range = np.array(param_range)
-    param_range = param_range.reshape(param_range.shape[0], 1)
-    return train_scores, test_scores, \
-           np.concatenate([param_range, train_scores], axis=1), np.concatenate([param_range, test_scores], axis=1), \
-        plt
+    if plot_param_index:
+        param_range = param_range[:,plot_param_index].reshape(param_range.shape[0], 1)
+    else:
+        param_range = param_range.reshape(param_range.shape[0], 1)
+    return train_scores, test_scores_mean, \
+           np.concatenate([param_range, train_scores_mean], axis=1), np.concatenate([param_range, test_scores_mean], axis=1)
 
 
 def plot_curves(param_range, train_scores_mean, train_scores_std, test_scores_mean, test_scores_std,
-                title, scoring, is_log_axis=True, figsize=None):
+                title, scoring, is_log_axis=True, figsize=None, plot_param_index=None, param_name=None):
     if figsize:
         plt.figure(figsize=figsize)
     if title:
         plt.title(title)
-    plt.xlabel(f'param_name')
+    plt.xlabel(f'{param_name}')
 
     plt.ylabel(scoring)
     plt.ylim(0.0, 1.1)
     lw = 2
+    if plot_param_index:
+        _param_range = [p[plot_param_index] for p in param_range]
+    else:
+        _param_range = param_range
     if is_log_axis:
-        plt.semilogx(param_range, train_scores_mean, label="Training score",
+        plt.semilogx(_param_range, train_scores_mean, label="Training score",
                      color="darkorange", lw=lw)
     else:
-        plt.plot(param_range, train_scores_mean, label="Training score",
+        plt.plot(_param_range, train_scores_mean, label="Training score",
                  color="darkorange", lw=lw)
-    plt.fill_between(param_range, train_scores_mean - train_scores_std,
+    plt.fill_between(_param_range, train_scores_mean - train_scores_std,
                      train_scores_mean + train_scores_std, alpha=0.2,
                      color="darkorange", lw=lw)
     if is_log_axis:
-        plt.semilogx(param_range, test_scores_mean, label="Cross-validation score",
+        plt.semilogx(_param_range, test_scores_mean, label="Cross-validation score",
                      color="navy", lw=lw)
     else:
-        plt.plot(param_range, test_scores_mean, label="Cross-validation score",
+        plt.plot(_param_range, test_scores_mean, label="Cross-validation score",
                  color="navy", lw=lw)
-    plt.fill_between(param_range, test_scores_mean - test_scores_std,
+    plt.fill_between(_param_range, test_scores_mean - test_scores_std,
                      test_scores_mean + test_scores_std, alpha=0.2,
                      color="navy", lw=lw)
     plt.legend(loc="best")
@@ -277,7 +296,8 @@ def plot_curves(param_range, train_scores_mean, train_scores_std, test_scores_me
 
 
 def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
-                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5), iterations=1, scoring=None, shuffle=True):
+                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5), iterations=1, scoring=None, shuffle=True,
+                        undersampling = False):
     """
     Generate 3 plots: the test and training learning curve, the training
     samples vs fit times curve, the fit times vs score curve.
@@ -354,7 +374,10 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
     for i in range(0, iterations):
         # 10 times undersample and make 10 learning curves
         print(f'iteration {i + 1}')
-        X_, y_, idx = balanced_sampling(X, y, r=1, random_state=42)
+        if undersampling:
+            X_, y_, idx = balanced_sampling(X, y, r=1, random_state=42)
+        else:
+            X_, y_ = X, y
         X_train, X_test, y_train, y_test = train_test_split(X_, y_, test_size=0.3, random_state=42, stratify=y_)
 
         train_sizes, train_scores, test_scores, fit_times, _ = \

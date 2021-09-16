@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.8.30)  12 SEP 2021 23:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.8.30)  15 SEP 2021 21:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -124,6 +124,15 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \c@subtable=\count92
 )
 (./huifu_tian_supervised_learning_assignment.aux
+
+LaTeX Warning: Label `fig:test' multiply defined.
+
+
+LaTeX Warning: Label `fig:test' multiply defined.
+
+
+LaTeX Warning: Label `fig:test' multiply defined.
+
 
 LaTeX Warning: Label `fig:test' multiply defined.
 
@@ -416,39 +425,140 @@ File: poland_xgb_min_impurity_decrease_accuracy.png Graphic file (type png)
 Package pdftex.def Info: poland_xgb_min_impurity_decrease_accuracy.png  used on
  input line 352.
 (pdftex.def)             Requested size: 89.2546pt x 100.80457pt.
- [5 <./poland_knn_n_neighbors_350_accuracy.png (PNG copy)> <./poland_knn_learni
-ng_curve.png (PNG copy)> <./poland_knn_learning_curve_k_5.png (PNG copy)> <./po
-land_xgb_n_estimators_accuracy.png (PNG copy)> <./poland_xgb_max_depth_accuracy
-.png (PNG copy)> <./poland_xgb_min_samples_split_accuracy.png (PNG copy)> <./po
-land_xgb_min_samples_leaf_accuracy.png (PNG copy)> <./poland_xgb_min_impurity_d
-ecrease_accuracy.png (PNG copy)>]
-<poland_xgb_learning_curve.png, id=41, 337.26pt x 291.33844pt>
+<poland_xgb_learning_curve.png, id=38, 337.26pt x 291.33844pt>
 File: poland_xgb_learning_curve.png Graphic file (type png)
 <use poland_xgb_learning_curve.png>
-Package pdftex.def Info: poland_xgb_learning_curve.png  used on input line 395.
+Package pdftex.def Info: poland_xgb_learning_curve.png  used on input line 357.
 
-(pdftex.def)             Requested size: 187.89914pt x 162.31711pt.
+(pdftex.def)             Requested size: 164.41711pt x 142.03247pt.
+ [5 <./poland_knn_n_neighbors_350_accuracy.png (PNG copy)> <./poland_knn_learni
+ng_curve.png (PNG copy)> <./poland_knn_learning_curve_k_5.png (PNG copy)>]
 <poland_svm_kernel.png, id=42, 1027.58907pt x 291.33844pt>
 File: poland_svm_kernel.png Graphic file (type png)
 <use poland_svm_kernel.png>
-Package pdftex.def Info: poland_svm_kernel.png  used on input line 415.
+Package pdftex.def Info: poland_svm_kernel.png  used on input line 406.
 (pdftex.def)             Requested size: 469.75502pt x 133.186pt.
- [6 <./poland_xgb_learning_curve.png (PNG copy)> <./poland_svm_kernel.png (PNG 
-copy)>]
-Overfull \hbox (36.85701pt too wide) in paragraph at lines 471--518
+ [6 <./poland_xgb_n_estimators_accuracy.png (PNG copy)> <./poland_xgb_max_depth
+_accuracy.png (PNG copy)> <./poland_xgb_min_samples_split_accuracy.png (PNG cop
+y)> <./poland_xgb_min_samples_leaf_accuracy.png (PNG copy)> <./poland_xgb_min_i
+mpurity_decrease_accuracy.png (PNG copy)> <./poland_xgb_learning_curve.png (PNG
+ copy)> <./poland_svm_kernel.png (PNG copy)>]
+<mnist_decision_max_depth.png, id=46, 344.78813pt x 347.79938pt>
+File: mnist_decision_max_depth.png Graphic file (type png)
+<use mnist_decision_max_depth.png>
+Package pdftex.def Info: mnist_decision_max_depth.png  used on input line 486.
+(pdftex.def)             Requested size: 112.74377pt x 113.72867pt.
+<mnist_decision_min_samples_split.png, id=47, 246.9225pt x 246.1697pt>
+File: mnist_decision_min_samples_split.png Graphic file (type png)
+<use mnist_decision_min_samples_split.png>
+Package pdftex.def Info: mnist_decision_min_samples_split.png  used on input li
+ne 492.
+(pdftex.def)             Requested size: 112.74377pt x 112.39803pt.
+<mnist_decision_min_samples_leaf.png, id=48, 249.18094pt x 246.9225pt>
+File: mnist_decision_min_samples_leaf.png Graphic file (type png)
+<use mnist_decision_min_samples_leaf.png>
+Package pdftex.def Info: mnist_decision_min_samples_leaf.png  used on input lin
+e 498.
+(pdftex.def)             Requested size: 112.74377pt x 111.72069pt.
+<mnist_decision_min_impurity_decrease.png, id=49, 246.9225pt x 249.18094pt>
+File: mnist_decision_min_impurity_decrease.png Graphic file (type png)
+<use mnist_decision_min_impurity_decrease.png>
+Package pdftex.def Info: mnist_decision_min_impurity_decrease.png  used on inpu
+t line 504.
+(pdftex.def)             Requested size: 112.74377pt x 113.77292pt.
+<mnist_decision_learning.png, id=50, 240.9pt x 210.7875pt>
+File: mnist_decision_learning.png Graphic file (type png)
+<use mnist_decision_learning.png>
+Package pdftex.def Info: mnist_decision_learning.png  used on input line 510.
+(pdftex.def)             Requested size: 159.71498pt x 139.7538pt.
+<mnist_decision_learning2.png, id=51, 242.40562pt x 207.77625pt>
+File: mnist_decision_learning2.png Graphic file (type png)
+<use mnist_decision_learning2.png>
+Package pdftex.def Info: mnist_decision_learning2.png  used on input line 516.
+(pdftex.def)             Requested size: 159.71498pt x 136.90446pt.
+ [7]
+<mnist_nn_hidden_layer_size.png, id=56, 244.66406pt x 251.43938pt>
+File: mnist_nn_hidden_layer_size.png Graphic file (type png)
+<use mnist_nn_hidden_layer_size.png>
+Package pdftex.def Info: mnist_nn_hidden_layer_size.png  used on input line 562
+.
+(pdftex.def)             Requested size: 140.92793pt x 144.83356pt.
+<mnist_nn_hidden_layer_2_size.png, id=57, 246.9225pt x 250.68657pt>
+File: mnist_nn_hidden_layer_2_size.png Graphic file (type png)
+<use mnist_nn_hidden_layer_2_size.png>
+Package pdftex.def Info: mnist_nn_hidden_layer_2_size.png  used on input line 5
+68.
+(pdftex.def)             Requested size: 140.92793pt x 143.0726pt.
+<mnist_knn_learning2.png, id=58, 239.39438pt x 210.03468pt>
+File: mnist_knn_learning2.png Graphic file (type png)
+<use mnist_knn_learning2.png>
+Package pdftex.def Info: mnist_knn_learning2.png  used on input line 574.
+(pdftex.def)             Requested size: 159.71498pt x 140.12639pt.
+ [8 <./mnist_decision_max_depth.png (PNG copy)> <./mnist_decision_min_samples_s
+plit.png (PNG copy)> <./mnist_decision_min_samples_leaf.png (PNG copy)> <./mnis
+t_decision_min_impurity_decrease.png (PNG copy)> <./mnist_decision_learning.png
+ (PNG copy)> <./mnist_decision_learning2.png (PNG copy)> <./mnist_nn_hidden_lay
+er_size.png (PNG copy)> <./mnist_nn_hidden_layer_2_size.png (PNG copy)> <./mnis
+t_knn_learning2.png (PNG copy)>]
+<mnist_knn_k.png, id=62, 246.9225pt x 247.67531pt>
+File: mnist_knn_k.png Graphic file (type png)
+<use mnist_knn_k.png>
+Package pdftex.def Info: mnist_knn_k.png  used on input line 597.
+(pdftex.def)             Requested size: 140.92793pt x 141.354pt.
+<mnist_knn_learning.png, id=63, 244.66406pt x 207.02344pt>
+File: mnist_knn_learning.png Graphic file (type png)
+<use mnist_knn_learning.png>
+Package pdftex.def Info: mnist_knn_learning.png  used on input line 603.
+(pdftex.def)             Requested size: 159.71498pt x 135.14487pt.
+File: mnist_knn_learning2.png Graphic file (type png)
+<use mnist_knn_learning2.png>
+Package pdftex.def Info: mnist_knn_learning2.png  used on input line 609.
+(pdftex.def)             Requested size: 159.71498pt x 140.12639pt.
+File: mnist_knn_k.png Graphic file (type png)
+<use mnist_knn_k.png>
+Package pdftex.def Info: mnist_knn_k.png  used on input line 663.
+(pdftex.def)             Requested size: 140.92793pt x 141.354pt.
+File: mnist_knn_learning.png Graphic file (type png)
+<use mnist_knn_learning.png>
+Package pdftex.def Info: mnist_knn_learning.png  used on input line 669.
+(pdftex.def)             Requested size: 159.71498pt x 135.14487pt.
+File: mnist_knn_learning2.png Graphic file (type png)
+<use mnist_knn_learning2.png>
+Package pdftex.def Info: mnist_knn_learning2.png  used on input line 675.
+(pdftex.def)             Requested size: 159.71498pt x 140.12639pt.
+<mnist_svm_kernel.png, id=64, 286.82156pt x 207.02344pt>
+File: mnist_svm_kernel.png Graphic file (type png)
+<use mnist_svm_kernel.png>
+Package pdftex.def Info: mnist_svm_kernel.png  used on input line 716.
+(pdftex.def)             Requested size: 140.92793pt x 101.72035pt.
+File: mnist_knn_learning.png Graphic file (type png)
+<use mnist_knn_learning.png>
+Package pdftex.def Info: mnist_knn_learning.png  used on input line 722.
+(pdftex.def)             Requested size: 159.71498pt x 135.14487pt.
+File: mnist_knn_learning2.png Graphic file (type png)
+<use mnist_knn_learning2.png>
+Package pdftex.def Info: mnist_knn_learning2.png  used on input line 728.
+(pdftex.def)             Requested size: 159.71498pt x 140.12639pt.
+
+Overfull \hbox (36.85701pt too wide) in paragraph at lines 737--784
  [] 
  []
 
-[7] [8] (./huifu_tian_supervised_learning_assignment.aux)
+[9 <./mnist_knn_k.png (PNG copy)> <./mnist_knn_learning.png (PNG copy)>]
+Overfull \vbox (170.29579pt too high) has occurred while \output is active []
+
+
+[10 <./mnist_svm_kernel.png (PNG copy)>]
+(./huifu_tian_supervised_learning_assignment.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3779 strings out of 494923
- 59634 string characters out of 6180742
- 133195 words of memory out of 5000000
- 7054 multiletter control sequences out of 15000+600000
+ 3839 strings out of 494923
+ 61542 string characters out of 6180742
+ 136196 words of memory out of 5000000
+ 7102 multiletter control sequences out of 15000+600000
  8208 words of font info for 29 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,13n,40p,1864b,376s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -459,11 +569,11 @@ ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on huifu_tian_supervised_learning_assignment.pdf (8 pages, 80142
-4 bytes).
+Output written on huifu_tian_supervised_learning_assignment.pdf (10 pages, 1096
+802 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 96 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 

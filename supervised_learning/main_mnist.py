@@ -1,8 +1,9 @@
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
+from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
 
-from helpers import plot_validation_curve
+from helpers import plot_validation_curve, fit_and_score_iteratively
 
 if __name__ == '__main__':
 
@@ -24,9 +25,12 @@ if __name__ == '__main__':
     max_depth_range.sort()
 
     # max_depth - accuracy
-    classifier = DecisionTreeClassifier(random_state=0, criterion='gini')
-    cv = StratifiedKFold(n_splits=2, shuffle=True, random_state=0)
-    train_scores, test_scores = plot_validation_curve(classifier, X_train, y_train,
-                          param_name='max_depth', param_range=max_depth_range,
-                          cv=cv, scoring='accuracy', n_jobs=8, title='Decision Tree Max Depth')
+    # no undersampling
+    # Baseline model
 
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+
+    classifier = MLPClassifier(solver='adam', alpha=1e-4, hidden_layer_sizes=30, random_state=0, max_iter=1000)
+    train_res, test_res = fit_and_score_iteratively(classifier, X_train=X_train, y_train=y_train, X_test=X_test,
+                                                    y_test=y_test,
+                                                    binary_classification=False, include_train_results=True)
