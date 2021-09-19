@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.8.30)  15 SEP 2021 21:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.8.30)  18 SEP 2021 21:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -124,9 +124,6 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \c@subtable=\count92
 )
 (./huifu_tian_supervised_learning_assignment.aux
-
-LaTeX Warning: Label `fig:test' multiply defined.
-
 
 LaTeX Warning: Label `fig:test' multiply defined.
 
@@ -293,272 +290,318 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 60.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 60.
 <poland_decision_max_tree_depth_accuracy.png, id=1, 256.70906pt x 290.58563pt>
 File: poland_decision_max_tree_depth_accuracy.png Graphic file (type png)
 <use poland_decision_max_tree_depth_accuracy.png>
 Package pdftex.def Info: poland_decision_max_tree_depth_accuracy.png  used on i
-nput line 86.
+nput line 63.
 (pdftex.def)             Requested size: 112.74377pt x 127.62306pt.
-<poland_decision_min_samples_split_accuracy.png, id=2, 255.95625pt x 290.58563p
-t>
-File: poland_decision_min_samples_split_accuracy.png Graphic file (type png)
-<use poland_decision_min_samples_split_accuracy.png>
-Package pdftex.def Info: poland_decision_min_samples_split_accuracy.png  used o
-n input line 92.
-(pdftex.def)             Requested size: 112.74377pt x 127.99551pt.
-<poland_decision_min_samples_leaf_accuracy.png, id=3, 253.69781pt x 292.09125pt
->
-File: poland_decision_min_samples_leaf_accuracy.png Graphic file (type png)
-<use poland_decision_min_samples_leaf_accuracy.png>
-Package pdftex.def Info: poland_decision_min_samples_leaf_accuracy.png  used on
- input line 98.
-(pdftex.def)             Requested size: 112.74377pt x 129.80414pt.
-<poland_decision_min_impurity_decrease_accuracy.png, id=4, 254.45062pt x 289.83
-281pt>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 65.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 65.
+<poland_decision_min_samples_split.png, id=2, 216.05719pt x 248.42813pt>
+File: poland_decision_min_samples_split.png Graphic file (type png)
+<use poland_decision_min_samples_split.png>
+Package pdftex.def Info: poland_decision_min_samples_split.png  used on input l
+ine 69.
+(pdftex.def)             Requested size: 112.74377pt x 129.63446pt.
+<poland_decision_min_samples_leaf.png, id=3, 216.05719pt x 248.42813pt>
+File: poland_decision_min_samples_leaf.png Graphic file (type png)
+<use poland_decision_min_samples_leaf.png>
+Package pdftex.def Info: poland_decision_min_samples_leaf.png  used on input li
+ne 75.
+(pdftex.def)             Requested size: 112.74377pt x 129.63446pt.
+<poland_decision_min_impurity_decrease_accuracy.png, id=4, 218.31563pt x 247.67
+531pt>
 File: poland_decision_min_impurity_decrease_accuracy.png Graphic file (type png
 )
 <use poland_decision_min_impurity_decrease_accuracy.png>
 Package pdftex.def Info: poland_decision_min_impurity_decrease_accuracy.png  us
-ed on input line 104.
-(pdftex.def)             Requested size: 112.74377pt x 128.42017pt.
+ed on input line 81.
+(pdftex.def)             Requested size: 112.74377pt x 127.90378pt.
+<poland_decision_learning_curve_without_max_depth.png, id=5, 263.48438pt x 223.
+58531pt>
+File: poland_decision_learning_curve_without_max_depth.png Graphic file (type p
+ng)
+<use poland_decision_learning_curve_without_max_depth.png>
+Package pdftex.def Info: poland_decision_learning_curve_without_max_depth.png  
+used on input line 86.
+(pdftex.def)             Requested size: 178.5092pt x 151.48329pt.
+<poland_decision_learning_curve_with_max_depth.png, id=6, 290.58563pt x 249.180
+94pt>
+File: poland_decision_learning_curve_with_max_depth.png Graphic file (type png)
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--113
+<use poland_decision_learning_curve_with_max_depth.png>
+Package pdftex.def Info: poland_decision_learning_curve_with_max_depth.png  use
+d on input line 91.
+(pdftex.def)             Requested size: 178.5092pt x 153.07616pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./poland_decision_max_
-tree_depth_accuracy.png (PNG copy)> <./poland_decision_min_samples_split_accura
-cy.png (PNG copy)> <./poland_decision_min_samples_leaf_accuracy.png (PNG copy)>
- <./poland_decision_min_impurity_decrease_accuracy.png (PNG copy)>]
-<poland_decision_learning_curve_without_max_depth.png, id=19, 263.48438pt x 223
-.58531pt>
-File: poland_decision_learning_curve_without_max_depth.png Graphic file (type p
-ng)
-<use poland_decision_learning_curve_without_max_depth.png>
-Package pdftex.def Info: poland_decision_learning_curve_without_max_depth.png  
-used on input line 161.
-(pdftex.def)             Requested size: 234.8775pt x 199.32121pt.
-<poland_decision_learning_curve_with_max_depth.png, id=20, 322.95656pt x 274.02
-374pt>
-File: poland_decision_learning_curve_with_max_depth.png Graphic file (type png)
-
-<use poland_decision_learning_curve_with_max_depth.png>
-Package pdftex.def Info: poland_decision_learning_curve_with_max_depth.png  use
-d on input line 166.
-(pdftex.def)             Requested size: 234.8775pt x 199.2914pt.
-<poland_nn_hidden_layer_size_2_200_accuracy.png, id=21, 198.7425pt x 227.34938p
+tree_depth_accuracy.png (PNG copy)> <./poland_decision_min_samples_split.png (P
+NG copy)> <./poland_decision_min_samples_leaf.png (PNG copy)> <./poland_decisio
+n_min_impurity_decrease_accuracy.png (PNG copy)> <./poland_decision_learning_cu
+rve_without_max_depth.png (PNG copy)> <./poland_decision_learning_curve_with_ma
+x_depth.png (PNG copy)>]
+<poland_nn_hidden_layer_size_2_200_accuracy.png, id=20, 198.7425pt x 227.34938p
 t>
 File: poland_nn_hidden_layer_size_2_200_accuracy.png Graphic file (type png)
 <use poland_nn_hidden_layer_size_2_200_accuracy.png>
 Package pdftex.def Info: poland_nn_hidden_layer_size_2_200_accuracy.png  used o
-n input line 189.
-(pdftex.def)             Requested size: 140.92793pt x 161.21797pt.
-<poland_nn_hidden_layer_2_size_2_60_accuracy.png, id=22, 200.24812pt x 225.0909
+n input line 155.
+(pdftex.def)             Requested size: 112.74377pt x 128.97646pt.
+<poland_nn_hidden_layer_2_size_2_60_accuracy.png, id=21, 200.24812pt x 225.0909
 4pt>
 File: poland_nn_hidden_layer_2_size_2_60_accuracy.png Graphic file (type png)
 <use poland_nn_hidden_layer_2_size_2_60_accuracy.png>
 Package pdftex.def Info: poland_nn_hidden_layer_2_size_2_60_accuracy.png  used 
-on input line 195.
-(pdftex.def)             Requested size: 140.92793pt x 158.42122pt.
-<poland_nn_alpha_0_10_accuracy.png, id=23, 201.00093pt x 223.58531pt>
+on input line 161.
+(pdftex.def)             Requested size: 112.74377pt x 126.73354pt.
+<poland_nn_alpha_0_10_accuracy.png, id=22, 201.00093pt x 223.58531pt>
 File: poland_nn_alpha_0_10_accuracy.png Graphic file (type png)
 <use poland_nn_alpha_0_10_accuracy.png>
 Package pdftex.def Info: poland_nn_alpha_0_10_accuracy.png  used on input line 
-201.
-(pdftex.def)             Requested size: 140.92793pt x 156.7611pt.
- [3 <./poland_decision_learning_curve_without_max_depth.png (PNG copy)> <./pola
-nd_decision_learning_curve_with_max_depth.png (PNG copy)> <./poland_nn_hidden_l
-ayer_size_2_200_accuracy.png (PNG copy)> <./poland_nn_hidden_layer_2_size_2_60_
-accuracy.png (PNG copy)> <./poland_nn_alpha_0_10_accuracy.png (PNG copy)>]
-<poland_knn_n_neighbors_350_accuracy.png, id=27, 255.95625pt x 289.08pt>
+167.
+(pdftex.def)             Requested size: 112.74377pt x 125.4116pt.
+<poland_nn_learning_rate.png, id=23, 222.07968pt x 253.69781pt>
+File: poland_nn_learning_rate.png Graphic file (type png)
+<use poland_nn_learning_rate.png>
+Package pdftex.def Info: poland_nn_learning_rate.png  used on input line 173.
+(pdftex.def)             Requested size: 112.74377pt x 128.79576pt.
+<poland_nn_learning_curve_constant.png, id=24, 289.83281pt x 245.41687pt>
+File: poland_nn_learning_curve_constant.png Graphic file (type png)
+<use poland_nn_learning_curve_constant.png>
+Package pdftex.def Info: poland_nn_learning_curve_constant.png  used on input l
+ine 179.
+(pdftex.def)             Requested size: 178.5092pt x 151.15327pt.
+<poland_nn_learning_curve_adaptive.png, id=25, 286.82156pt x 248.42813pt>
+File: poland_nn_learning_curve_adaptive.png Graphic file (type png)
+<use poland_nn_learning_curve_adaptive.png>
+Package pdftex.def Info: poland_nn_learning_curve_adaptive.png  used on input l
+ine 185.
+(pdftex.def)             Requested size: 178.5092pt x 154.61519pt.
+ [3 <./poland_nn_hidden_layer_size_2_200_accuracy.png (PNG copy)> <./poland_nn_
+hidden_layer_2_size_2_60_accuracy.png (PNG copy)> <./poland_nn_alpha_0_10_accur
+acy.png (PNG copy)> <./poland_nn_learning_rate.png (PNG copy)> <./poland_nn_lea
+rning_curve_constant.png (PNG copy)> <./poland_nn_learning_curve_adaptive.png (
+PNG copy)>]
+<poland_knn_n_neighbors_350_accuracy.png, id=30, 255.95625pt x 289.08pt>
 File: poland_knn_n_neighbors_350_accuracy.png Graphic file (type png)
 <use poland_knn_n_neighbors_350_accuracy.png>
 Package pdftex.def Info: poland_knn_n_neighbors_350_accuracy.png  used on input
- line 260.
+ line 238.
 (pdftex.def)             Requested size: 122.13371pt x 137.93637pt.
-<poland_knn_learning_curve.png, id=28, 337.26pt x 287.57437pt>
+<poland_knn_learning_curve.png, id=31, 337.26pt x 287.57437pt>
 File: poland_knn_learning_curve.png Graphic file (type png)
 <use poland_knn_learning_curve.png>
-Package pdftex.def Info: poland_knn_learning_curve.png  used on input line 266.
+Package pdftex.def Info: poland_knn_learning_curve.png  used on input line 244.
 
 (pdftex.def)             Requested size: 159.71498pt x 136.18677pt.
-<poland_knn_learning_curve_k_5.png, id=29, 347.79938pt x 286.82156pt>
+<poland_knn_learning_curve_k_5.png, id=32, 347.79938pt x 286.82156pt>
 File: poland_knn_learning_curve_k_5.png Graphic file (type png)
 <use poland_knn_learning_curve_k_5.png>
 Package pdftex.def Info: poland_knn_learning_curve_k_5.png  used on input line 
-272.
+250.
 (pdftex.def)             Requested size: 164.41711pt x 135.58954pt.
- [4]
-<poland_xgb_n_estimators_accuracy.png, id=33, 251.43938pt x 289.83281pt>
+ [4 <./poland_knn_n_neighbors_350_accuracy.png (PNG copy)> <./poland_knn_learni
+ng_curve.png (PNG copy)> <./poland_knn_learning_curve_k_5.png (PNG copy)>]
+<poland_xgb_n_estimators_accuracy.png, id=36, 251.43938pt x 289.83281pt>
 File: poland_xgb_n_estimators_accuracy.png Graphic file (type png)
 <use poland_xgb_n_estimators_accuracy.png>
 Package pdftex.def Info: poland_xgb_n_estimators_accuracy.png  used on input li
-ne 328.
-(pdftex.def)             Requested size: 89.2546pt x 102.8803pt.
-<poland_xgb_max_depth_accuracy.png, id=34, 256.70906pt x 292.09125pt>
+ne 310.
+(pdftex.def)             Requested size: 140.92793pt x 162.44678pt.
+<poland_xgb_max_depth_accuracy.png, id=37, 256.70906pt x 292.09125pt>
 File: poland_xgb_max_depth_accuracy.png Graphic file (type png)
 <use poland_xgb_max_depth_accuracy.png>
 Package pdftex.def Info: poland_xgb_max_depth_accuracy.png  used on input line 
-334.
-(pdftex.def)             Requested size: 89.2546pt x 101.556pt.
-<poland_xgb_min_samples_split_accuracy.png, id=35, 253.69781pt x 292.09125pt>
-File: poland_xgb_min_samples_split_accuracy.png Graphic file (type png)
-<use poland_xgb_min_samples_split_accuracy.png>
-Package pdftex.def Info: poland_xgb_min_samples_split_accuracy.png  used on inp
-ut line 340.
-(pdftex.def)             Requested size: 89.2546pt x 102.75937pt.
-<poland_xgb_min_samples_leaf_accuracy.png, id=36, 255.95625pt x 292.84406pt>
-File: poland_xgb_min_samples_leaf_accuracy.png Graphic file (type png)
-<use poland_xgb_min_samples_leaf_accuracy.png>
-Package pdftex.def Info: poland_xgb_min_samples_leaf_accuracy.png  used on inpu
-t line 346.
-(pdftex.def)             Requested size: 89.2546pt x 102.11713pt.
-<poland_xgb_min_impurity_decrease_accuracy.png, id=37, 255.95625pt x 289.08pt>
-File: poland_xgb_min_impurity_decrease_accuracy.png Graphic file (type png)
-<use poland_xgb_min_impurity_decrease_accuracy.png>
-Package pdftex.def Info: poland_xgb_min_impurity_decrease_accuracy.png  used on
- input line 352.
-(pdftex.def)             Requested size: 89.2546pt x 100.80457pt.
+316.
+(pdftex.def)             Requested size: 140.92793pt x 160.35205pt.
 <poland_xgb_learning_curve.png, id=38, 337.26pt x 291.33844pt>
 File: poland_xgb_learning_curve.png Graphic file (type png)
 <use poland_xgb_learning_curve.png>
-Package pdftex.def Info: poland_xgb_learning_curve.png  used on input line 357.
+Package pdftex.def Info: poland_xgb_learning_curve.png  used on input line 321.
 
-(pdftex.def)             Requested size: 164.41711pt x 142.03247pt.
- [5 <./poland_knn_n_neighbors_350_accuracy.png (PNG copy)> <./poland_knn_learni
-ng_curve.png (PNG copy)> <./poland_knn_learning_curve_k_5.png (PNG copy)>]
-<poland_svm_kernel.png, id=42, 1027.58907pt x 291.33844pt>
-File: poland_svm_kernel.png Graphic file (type png)
-<use poland_svm_kernel.png>
-Package pdftex.def Info: poland_svm_kernel.png  used on input line 406.
-(pdftex.def)             Requested size: 469.75502pt x 133.186pt.
- [6 <./poland_xgb_n_estimators_accuracy.png (PNG copy)> <./poland_xgb_max_depth
-_accuracy.png (PNG copy)> <./poland_xgb_min_samples_split_accuracy.png (PNG cop
-y)> <./poland_xgb_min_samples_leaf_accuracy.png (PNG copy)> <./poland_xgb_min_i
-mpurity_decrease_accuracy.png (PNG copy)> <./poland_xgb_learning_curve.png (PNG
- copy)> <./poland_svm_kernel.png (PNG copy)>]
-<mnist_decision_max_depth.png, id=46, 344.78813pt x 347.79938pt>
+(pdftex.def)             Requested size: 178.5092pt x 154.20413pt.
+ [5 <./poland_xgb_n_estimators_accuracy.png (PNG copy)> <./poland_xgb_max_depth
+_accuracy.png (PNG copy)> <./poland_xgb_learning_curve.png (PNG copy)>]
+<poland_svm_poly_degree.png, id=42, 221.32687pt x 248.42813pt>
+File: poland_svm_poly_degree.png Graphic file (type png)
+<use poland_svm_poly_degree.png>
+Package pdftex.def Info: poland_svm_poly_degree.png  used on input line 375.
+(pdftex.def)             Requested size: 140.92793pt x 158.19362pt.
+<poland_svm_rbf_c_accuracy.png, id=43, 220.57407pt x 247.67531pt>
+File: poland_svm_rbf_c_accuracy.png Graphic file (type png)
+<use poland_svm_rbf_c_accuracy.png>
+Package pdftex.def Info: poland_svm_rbf_c_accuracy.png  used on input line 381.
+
+(pdftex.def)             Requested size: 140.92793pt x 158.25089pt.
+<poland_svm_learning.png, id=44, 290.58563pt x 247.67531pt>
+File: poland_svm_learning.png Graphic file (type png)
+<use poland_svm_learning.png>
+Package pdftex.def Info: poland_svm_learning.png  used on input line 387.
+(pdftex.def)             Requested size: 178.5092pt x 152.15123pt.
+ [6 <./poland_svm_poly_degree.png (PNG copy)> <./poland_svm_rbf_c_accuracy.png 
+(PNG copy)> <./poland_svm_learning.png (PNG copy)>]
+Overfull \hbox (11.7088pt too wide) in paragraph at lines 419--420
+\OT1/cmr/m/n/10 Appendix Ta-ble 2 com-pares each model's per-for-mance af-ter t
+un-ing. It shows ac-cu-racy, fit time(seconds)/number
+ []
+
+<mnist_decision_max_depth.png, id=48, 344.78813pt x 347.79938pt>
 File: mnist_decision_max_depth.png Graphic file (type png)
 <use mnist_decision_max_depth.png>
-Package pdftex.def Info: mnist_decision_max_depth.png  used on input line 486.
+Package pdftex.def Info: mnist_decision_max_depth.png  used on input line 445.
 (pdftex.def)             Requested size: 112.74377pt x 113.72867pt.
-<mnist_decision_min_samples_split.png, id=47, 246.9225pt x 246.1697pt>
+<mnist_decision_min_samples_split.png, id=49, 246.9225pt x 246.1697pt>
 File: mnist_decision_min_samples_split.png Graphic file (type png)
 <use mnist_decision_min_samples_split.png>
 Package pdftex.def Info: mnist_decision_min_samples_split.png  used on input li
-ne 492.
+ne 451.
 (pdftex.def)             Requested size: 112.74377pt x 112.39803pt.
-<mnist_decision_min_samples_leaf.png, id=48, 249.18094pt x 246.9225pt>
+<mnist_decision_min_samples_leaf.png, id=50, 249.18094pt x 246.9225pt>
 File: mnist_decision_min_samples_leaf.png Graphic file (type png)
 <use mnist_decision_min_samples_leaf.png>
 Package pdftex.def Info: mnist_decision_min_samples_leaf.png  used on input lin
-e 498.
+e 457.
 (pdftex.def)             Requested size: 112.74377pt x 111.72069pt.
-<mnist_decision_min_impurity_decrease.png, id=49, 246.9225pt x 249.18094pt>
+<mnist_decision_min_impurity_decrease.png, id=51, 246.9225pt x 249.18094pt>
 File: mnist_decision_min_impurity_decrease.png Graphic file (type png)
 <use mnist_decision_min_impurity_decrease.png>
 Package pdftex.def Info: mnist_decision_min_impurity_decrease.png  used on inpu
-t line 504.
+t line 463.
 (pdftex.def)             Requested size: 112.74377pt x 113.77292pt.
-<mnist_decision_learning.png, id=50, 240.9pt x 210.7875pt>
+<mnist_decision_learning.png, id=52, 240.9pt x 210.7875pt>
 File: mnist_decision_learning.png Graphic file (type png)
 <use mnist_decision_learning.png>
-Package pdftex.def Info: mnist_decision_learning.png  used on input line 510.
+Package pdftex.def Info: mnist_decision_learning.png  used on input line 469.
 (pdftex.def)             Requested size: 159.71498pt x 139.7538pt.
-<mnist_decision_learning2.png, id=51, 242.40562pt x 207.77625pt>
+<mnist_decision_learning2.png, id=53, 242.40562pt x 207.77625pt>
 File: mnist_decision_learning2.png Graphic file (type png)
 <use mnist_decision_learning2.png>
-Package pdftex.def Info: mnist_decision_learning2.png  used on input line 516.
+Package pdftex.def Info: mnist_decision_learning2.png  used on input line 475.
 (pdftex.def)             Requested size: 159.71498pt x 136.90446pt.
- [7]
-<mnist_nn_hidden_layer_size.png, id=56, 244.66406pt x 251.43938pt>
+[7]
+<mnist_nn_hidden_layer_size.png, id=58, 244.66406pt x 251.43938pt>
 File: mnist_nn_hidden_layer_size.png Graphic file (type png)
 <use mnist_nn_hidden_layer_size.png>
-Package pdftex.def Info: mnist_nn_hidden_layer_size.png  used on input line 562
+Package pdftex.def Info: mnist_nn_hidden_layer_size.png  used on input line 516
 .
-(pdftex.def)             Requested size: 140.92793pt x 144.83356pt.
-<mnist_nn_hidden_layer_2_size.png, id=57, 246.9225pt x 250.68657pt>
+(pdftex.def)             Requested size: 112.74377pt x 115.86685pt.
+<mnist_nn_hidden_layer_2_size.png, id=59, 246.9225pt x 250.68657pt>
 File: mnist_nn_hidden_layer_2_size.png Graphic file (type png)
 <use mnist_nn_hidden_layer_2_size.png>
 Package pdftex.def Info: mnist_nn_hidden_layer_2_size.png  used on input line 5
-68.
-(pdftex.def)             Requested size: 140.92793pt x 143.0726pt.
-<mnist_knn_learning2.png, id=58, 239.39438pt x 210.03468pt>
-File: mnist_knn_learning2.png Graphic file (type png)
-<use mnist_knn_learning2.png>
-Package pdftex.def Info: mnist_knn_learning2.png  used on input line 574.
-(pdftex.def)             Requested size: 159.71498pt x 140.12639pt.
+22.
+(pdftex.def)             Requested size: 112.74377pt x 114.46037pt.
+<mnist_nn_activation.png, id=60, 246.1697pt x 244.66406pt>
+File: mnist_nn_activation.png Graphic file (type png)
+<use mnist_nn_activation.png>
+Package pdftex.def Info: mnist_nn_activation.png  used on input line 528.
+(pdftex.def)             Requested size: 112.74377pt x 112.05403pt.
+<mnist_nn_learning_rate.png, id=61, 294.34969pt x 296.60812pt>
+File: mnist_nn_learning_rate.png Graphic file (type png)
+<use mnist_nn_learning_rate.png>
+Package pdftex.def Info: mnist_nn_learning_rate.png  used on input line 534.
+(pdftex.def)             Requested size: 112.74377pt x 113.60837pt.
+<mnist_nn_learning_logistic_400_200.png, id=62, 240.14719pt x 210.7875pt>
+File: mnist_nn_learning_logistic_400_200.png Graphic file (type png)
+<use mnist_nn_learning_logistic_400_200.png>
+Package pdftex.def Info: mnist_nn_learning_logistic_400_200.png  used on input 
+line 540.
+(pdftex.def)             Requested size: 150.32504pt x 131.94771pt.
+<mnist_nn_learning_relu_400_200.png, id=63, 240.9pt x 207.02344pt>
+File: mnist_nn_learning_relu_400_200.png Graphic file (type png)
+<use mnist_nn_learning_relu_400_200.png>
+Package pdftex.def Info: mnist_nn_learning_relu_400_200.png  used on input line
+ 545.
+(pdftex.def)             Requested size: 150.32504pt x 129.18715pt.
  [8 <./mnist_decision_max_depth.png (PNG copy)> <./mnist_decision_min_samples_s
 plit.png (PNG copy)> <./mnist_decision_min_samples_leaf.png (PNG copy)> <./mnis
 t_decision_min_impurity_decrease.png (PNG copy)> <./mnist_decision_learning.png
  (PNG copy)> <./mnist_decision_learning2.png (PNG copy)> <./mnist_nn_hidden_lay
 er_size.png (PNG copy)> <./mnist_nn_hidden_layer_2_size.png (PNG copy)> <./mnis
-t_knn_learning2.png (PNG copy)>]
-<mnist_knn_k.png, id=62, 246.9225pt x 247.67531pt>
+t_nn_activation.png (PNG copy)> <./mnist_nn_learning_rate.png (PNG copy)> <./mn
+ist_nn_learning_logistic_400_200.png (PNG copy)> <./mnist_nn_learning_relu_400_
+200.png (PNG copy)>]
+<mnist_knn_k.png, id=67, 246.9225pt x 247.67531pt>
 File: mnist_knn_k.png Graphic file (type png)
 <use mnist_knn_k.png>
-Package pdftex.def Info: mnist_knn_k.png  used on input line 597.
+Package pdftex.def Info: mnist_knn_k.png  used on input line 588.
 (pdftex.def)             Requested size: 140.92793pt x 141.354pt.
-<mnist_knn_learning.png, id=63, 244.66406pt x 207.02344pt>
+<mnist_knn_learning.png, id=68, 244.66406pt x 207.02344pt>
 File: mnist_knn_learning.png Graphic file (type png)
 <use mnist_knn_learning.png>
-Package pdftex.def Info: mnist_knn_learning.png  used on input line 603.
+Package pdftex.def Info: mnist_knn_learning.png  used on input line 594.
 (pdftex.def)             Requested size: 159.71498pt x 135.14487pt.
+<mnist_knn_learning2.png, id=69, 239.39438pt x 210.03468pt>
 File: mnist_knn_learning2.png Graphic file (type png)
 <use mnist_knn_learning2.png>
-Package pdftex.def Info: mnist_knn_learning2.png  used on input line 609.
+Package pdftex.def Info: mnist_knn_learning2.png  used on input line 600.
 (pdftex.def)             Requested size: 159.71498pt x 140.12639pt.
-File: mnist_knn_k.png Graphic file (type png)
-<use mnist_knn_k.png>
-Package pdftex.def Info: mnist_knn_k.png  used on input line 663.
-(pdftex.def)             Requested size: 140.92793pt x 141.354pt.
-File: mnist_knn_learning.png Graphic file (type png)
-<use mnist_knn_learning.png>
-Package pdftex.def Info: mnist_knn_learning.png  used on input line 669.
-(pdftex.def)             Requested size: 159.71498pt x 135.14487pt.
-File: mnist_knn_learning2.png Graphic file (type png)
-<use mnist_knn_learning2.png>
-Package pdftex.def Info: mnist_knn_learning2.png  used on input line 675.
-(pdftex.def)             Requested size: 159.71498pt x 140.12639pt.
-<mnist_svm_kernel.png, id=64, 286.82156pt x 207.02344pt>
+ [9 <./mnist_knn_k.png (PNG copy)> <./mnist_knn_learning.png (PNG copy)> <./mni
+st_knn_learning2.png (PNG copy)>]
+<mnist_xgboost_n_estimators.png, id=73, 246.9225pt x 250.68657pt>
+File: mnist_xgboost_n_estimators.png Graphic file (type png)
+<use mnist_xgboost_n_estimators.png>
+Package pdftex.def Info: mnist_xgboost_n_estimators.png  used on input line 646
+.
+(pdftex.def)             Requested size: 140.92793pt x 143.0726pt.
+<mnist_xgboost_max_depth.png, id=74, 244.66406pt x 250.68657pt>
+File: mnist_xgboost_max_depth.png Graphic file (type png)
+<use mnist_xgboost_max_depth.png>
+Package pdftex.def Info: mnist_xgboost_max_depth.png  used on input line 652.
+(pdftex.def)             Requested size: 140.92793pt x 144.39993pt.
+<mnist_xgboost_learning_30000.png, id=75, 292.09125pt x 246.9225pt>
+File: mnist_xgboost_learning_30000.png Graphic file (type png)
+<use mnist_xgboost_learning_30000.png>
+Package pdftex.def Info: mnist_xgboost_learning_30000.png  used on input line 6
+58.
+(pdftex.def)             Requested size: 173.80705pt x 146.93388pt.
+ [10 <./mnist_xgboost_n_estimators.png (PNG copy)> <./mnist_xgboost_max_depth.p
+ng (PNG copy)> <./mnist_xgboost_learning_30000.png (PNG copy)>]
+<mnist_svm_kernel.png, id=79, 249.93375pt x 246.9225pt>
 File: mnist_svm_kernel.png Graphic file (type png)
 <use mnist_svm_kernel.png>
-Package pdftex.def Info: mnist_svm_kernel.png  used on input line 716.
-(pdftex.def)             Requested size: 140.92793pt x 101.72035pt.
-File: mnist_knn_learning.png Graphic file (type png)
-<use mnist_knn_learning.png>
-Package pdftex.def Info: mnist_knn_learning.png  used on input line 722.
-(pdftex.def)             Requested size: 159.71498pt x 135.14487pt.
-File: mnist_knn_learning2.png Graphic file (type png)
-<use mnist_knn_learning2.png>
-Package pdftex.def Info: mnist_knn_learning2.png  used on input line 728.
-(pdftex.def)             Requested size: 159.71498pt x 140.12639pt.
-
-Overfull \hbox (36.85701pt too wide) in paragraph at lines 737--784
+Package pdftex.def Info: mnist_svm_kernel.png  used on input line 697.
+(pdftex.def)             Requested size: 150.32504pt x 148.5201pt.
+<mnist_svm_C.png, id=80, 246.9225pt x 249.18094pt>
+File: mnist_svm_C.png Graphic file (type png)
+<use mnist_svm_C.png>
+Package pdftex.def Info: mnist_svm_C.png  used on input line 703.
+(pdftex.def)             Requested size: 150.32504pt x 151.69977pt.
+<mnist_svm_poly_degree.png, id=81, 298.11375pt x 295.85532pt>
+File: mnist_svm_poly_degree.png Graphic file (type png)
+<use mnist_svm_poly_degree.png>
+Package pdftex.def Info: mnist_svm_poly_degree.png  used on input line 709.
+(pdftex.def)             Requested size: 150.32504pt x 149.1868pt.
+<mnist_svm_learning.png, id=82, 287.57437pt x 246.1697pt>
+File: mnist_svm_learning.png Graphic file (type png)
+<use mnist_svm_learning.png>
+Package pdftex.def Info: mnist_svm_learning.png  used on input line 715.
+(pdftex.def)             Requested size: 159.71498pt x 136.72345pt.
+ [11 <./mnist_svm_kernel.png (PNG copy)> <./mnist_svm_C.png (PNG copy)> <./mnis
+t_svm_poly_degree.png (PNG copy)> <./mnist_svm_learning.png (PNG copy)>] [12]
+Overfull \hbox (36.85701pt too wide) in paragraph at lines 818--865
  [] 
  []
 
-[9 <./mnist_knn_k.png (PNG copy)> <./mnist_knn_learning.png (PNG copy)>]
-Overfull \vbox (170.29579pt too high) has occurred while \output is active []
-
-
-[10 <./mnist_svm_kernel.png (PNG copy)>]
-(./huifu_tian_supervised_learning_assignment.aux)
+[13] [14] (./huifu_tian_supervised_learning_assignment.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3839 strings out of 494923
- 61542 string characters out of 6180742
- 136196 words of memory out of 5000000
- 7102 multiletter control sequences out of 15000+600000
+ 3899 strings out of 494923
+ 63200 string characters out of 6180742
+ 137189 words of memory out of 5000000
+ 7150 multiletter control sequences out of 15000+600000
  8208 words of font info for 29 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,13n,40p,1864b,376s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -569,11 +612,11 @@ ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on huifu_tian_supervised_learning_assignment.pdf (10 pages, 1096
-802 bytes).
+Output written on huifu_tian_supervised_learning_assignment.pdf (14 pages, 1319
+647 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 121 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 156 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 216 words of extra memory for PDF output out of 10000 (max. 10000000)
 

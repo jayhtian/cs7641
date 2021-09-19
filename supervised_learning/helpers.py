@@ -371,6 +371,7 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
     test_scores_std = []
     fit_times_mean = []
     fit_times_std = []
+    score_times_mean = []
     for i in range(0, iterations):
         # 10 times undersample and make 10 learning curves
         print(f'iteration {i + 1}')
@@ -380,7 +381,7 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
             X_, y_ = X, y
         X_train, X_test, y_train, y_test = train_test_split(X_, y_, test_size=0.3, random_state=42, stratify=y_)
 
-        train_sizes, train_scores, test_scores, fit_times, _ = \
+        train_sizes, train_scores, test_scores, fit_times, score_times = \
             learning_curve(estimator, X_train, y_train, cv=cv, n_jobs=n_jobs,
                            train_sizes=train_sizes,
                            return_times=True,
@@ -396,13 +397,26 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
         test_scores_std.append(np.std(test_scores, axis=1))
         fit_times_mean.append(np.mean(fit_times, axis=1))
         fit_times_std.append(np.std(fit_times, axis=1))
+        score_times_mean.append(np.mean(score_times, axis=1))
 
     train_scores_mean = np.mean(train_scores_mean, axis=0, )
     train_scores_std = np.mean(train_scores_std, axis=0)
     test_scores_mean = np.mean(test_scores_mean, axis=0)
     test_scores_std = np.mean(test_scores_std, axis=0)
     fit_times_mean = np.mean(fit_times_mean, axis=0)
-    fit_times_std = np.mean(fit_times_std, axis=0)
+    fit_times_std = np.mean(fit_times_std, axis=0,)
+    score_times_mean = np.mean(score_times_mean, axis=0)
+
+    results = dict(train_sizes=train_sizes,
+                   train_scores_mean=train_scores_mean,
+                   train_scores_std=train_scores_std,
+                   test_scores_mean=test_scores_mean,
+                   test_scores_std=test_scores_std,
+                   fit_times_mean=fit_times_mean,
+                   fit_times_std=fit_times_std,
+                   fit_times_train_size_ratio=sum(fit_times_mean)/sum(train_sizes),
+                   fit_times_test_score_ratio=sum(fit_times_mean)/sum(test_scores_mean),
+                   score_times_test_size_ratio=sum(score_times_mean)/sum(train_sizes))
 
     # Plot learning curve
     axes[0].grid()
@@ -436,7 +450,7 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
     axes[2].set_ylabel("Score")
     axes[2].set_title("Performance of the model")
 
-    return plt
+    return results
 
 
 def fit_and_score_pipeline(estimator, X, y, cv, scoring):
