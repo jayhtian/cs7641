@@ -1,4 +1,3 @@
-*.arff
 __pycache__
 .env
 # Byte-compiled / optimized / DLL files
@@ -130,4 +129,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
->>>>>>> b5ed1b06feead9b4fe12bececa38b060658c1716
